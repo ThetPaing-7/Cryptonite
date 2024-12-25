@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <!-- Css link -->
+    <!-- JS link -->
+
+    <script src="{{ url_for('static', filename='js/jsfile.js') }}" defer></script>    <!-- Css link -->
     <link rel="stylesheet" href="/static/css/base.css">
 </head>
 <body>
@@ -21,7 +23,7 @@
             <div>Welcome<span>user</span></div>
             <div>Logout</div>
             <!-- Switch toggles -->
-                 <label for="theme" class="theme">
+    <label for="theme" class="theme">
 	<span class="theme__toggle-wrap">
 		<input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
 		<span class="theme__fill"></span>
