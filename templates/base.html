@@ -11,6 +11,11 @@
     <!-- Document title -->
     <title>Cryptonite: {% block title %}{% endblock %}</title>
 
+    <!-- Block for child specific css -->
+     {% block extar_css %}{% endblock %}
+
+     <!-- Block for child specific js -->
+      {% block extra_js %}{% endblock %}
 </head>
 <body>
     <!-- Navigation bar -->
@@ -18,7 +23,13 @@
         <div class="leftside">
             <div><a href="/home">Home</a></div>
             <div><a href="/learn">Learn</a></div>
-            <div><a href="/tools">Tools</a></div>
+            <div><a href="/tools">Tools</a>
+                <ul class="dropdown">
+                    <li><a href="frequencyAnalysis">Frequency Analysis</a></li>
+                    <li><a href="indexOfCoincidence">Index of coincidence</a></li>
+                    <li><a href="shiftTester">Shift Tester</a></li>
+                </ul>
+            </div>
             <div><a href="/track">Track</a></div>
         </div>
         <div class="rightside">
