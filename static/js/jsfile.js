@@ -1,27 +1,19 @@
-console.log("This is working")
+let darkmode = localStorage.getItem('darkmode')
+const themeSwitch = document.getElementById('theme-switch')
 
-
-// Check for user save theme
-window.onload = function(){
-    const themeCheckbox = document.getElementById("theme")
-
-    if(localStorage.getItem('theme') === 'light'){
-        themeCheckbox.checked = true;
-        document.body.classList.add("light_mode")
-    }else{
-        themeCheckbox.checked = false;
-        document.body.classList.remove("light_mode")
-    }
-
-    // listen for the checkbox changes
-    themeCheckbox.addEventListener("click",function(){
-        if(themeCheckbox.checked){
-            document.body.classList.add("light_mode")
-            localStorage.setItem('theme', 'light')
-        }else{
-            //Dark mode
-            document.body.classList.remove("light_mode");
-            localStorage.setItem('theme', 'dark')
-        }
-    })
+const enableDarkmode = () => {
+  document.body.classList.add('darkmode')
+  localStorage.setItem('darkmode','active')
 }
+
+const disableDarkmode = () => {
+  document.body.classList.remove('darkmode')
+  localStorage.setItem('darkmode',null)
+}
+
+if(darkmode === 'active') enableDarkmode()
+// Click to switch light and dark
+themeSwitch.addEventListener("click",()=>{
+  dakrmode = localStorage.getItem('darkmode')
+  dakrmode !== "active" ? enableDarkmode() : disableDarkmode()
+})

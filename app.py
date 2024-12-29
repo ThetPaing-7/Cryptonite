@@ -8,5 +8,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
+def home():
     return render_template("base.html")
+
+
+
+@app.route("/tools")
+def tools():
+    return render_template("tools.html")
