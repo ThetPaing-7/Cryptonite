@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Frequency Analysis
+{% endblock %}
+
+<!-- Block for child specific css -->
+ {% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/frequencyAnalysis.css') }}">
+ {% endblock %}
+
+<!-- Block for child specific js -->
+{% block extra_js %}
+    <script src="{{ url_for('static', filename = 'js/frequencyAnalysis.js') }}" defer></script>
+{% endblock %}
+
+{% block main %}
+    <h1>frequencyAnalysis Here</h1>
+{% endblock %}

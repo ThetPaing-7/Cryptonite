@@ -12,7 +12,23 @@ def home():
     return render_template("base.html")
 
 
-
+# Tools page
 @app.route("/tools")
 def tools():
     return render_template("tools.html")
+
+# Frequecny Analysis
+@app.route("/frequencyAnalysis")
+def frequencyAnalysis():
+    return render_template("frequencyAnalysis.html")
+
+# Index of Coincidence
+@app.route("/indexOfCoincidence")
+def indexOfCoincidence():
+    return render_template("indexOfCoincidence.html")
+
+
+# Shift tester
+@app.route("/shiftTester")
+def shiftTester():
+    return render_template("shiftTester.html")

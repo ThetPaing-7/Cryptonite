@@ -11,6 +11,7 @@
     --base-variant:white;
     --primary-color:#3a435d;
     --dropdown-bg-color:black;
+    --navTextHover:red;
 }
 
 .darkmode{
@@ -20,6 +21,7 @@
     --base-variant:white;
     --primary-color:#3a435d;
     --dropdown-bg-color:white;
+    --navTextHover:red;
 }
 
 body{
@@ -46,14 +48,36 @@ body{
  text-decoration: none;
  color: var(--nav-text-color);
 }
+
+.leftside div a:hover{
+ color: var(--navTextHover);
+}
+
 .leftside div,
 .rightside div{
     margin: 3px 10px;
 }
 
 /* Drop down navigation */
+.dropdown ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.dropdown li{
+  list-style: none;
+  margin: 0;
+  padding: 0; 
+}
+
 .dropdown li a{
   display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .leftside div .dropdown{
@@ -61,16 +85,31 @@ body{
   position: absolute;
   z-index: 999;
   display: none;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .dropdown li a:hover{
   background-color: aquamarine;
+  color: white;
 }
 
 .leftside div:hover .dropdown{
   display: block;
 }
 
+.leftside div .dropdown {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.leftside div:hover .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+}
 /* Start of the toogle bar */
 #theme-switch{
   height: 40px;

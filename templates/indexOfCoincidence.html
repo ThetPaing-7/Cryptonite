@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Index Of coincidence
+{% endblock %}
+
+<!-- Block for child specific css -->
+ {% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/indexOfCoincidence.css') }}">
+ {% endblock %}
+
+<!-- Block for child specific js -->
+{% block extra_js %}
+    <script src="{{ url_for('static', filename = 'js/indexOfCoincidence.js') }}" defer></script>
+{% endblock %}
+
+{% block main %}
+    <h1>Index of coincidence here</h1>
+{% endblock %}
