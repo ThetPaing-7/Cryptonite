@@ -15,5 +15,58 @@
 {% endblock %}
 
 {% block main %}
-    <h1>frequencyAnalysis Here</h1>
+    <div class="grid-container">
+        <!-- Text input section -->
+        <div class="inputSection">
+            <!-- page header -->
+            <h2 class="header">frequecny Analysis</h2>
+            <div class="input">
+                <label for="sentence">Enter text here:</label><br>
+                <input type="text" id="sentence" name="sentence" required>
+            </div>
+            <div class="optionGroup">
+                <!-- Ask which option to select -->
+                <div>
+                    <!-- Only letters -->
+                    <input type="checkbox" id="onlyletters" name="onlyletters">
+                    <label for="onlyletters">Only A to Z</label>
+                </div>
+
+                <!-- To include space -->
+                <div>
+                    <input type="checkbox" id="numbersOnly" name="numbersOnly">
+                    <label for="numbersOnly">Only Digits</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="numbersAndLetters" name="numbersAndLetters">
+                    <label for="numbersAndLetters">Only Letters and digit</label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="space" name="space">
+                    <label for="space">Include space</label>
+                </div>
+    
+            </div> 
+    
+            <div class="analtzeopt">
+                <div class="analysisHeader">Analyze Option</div>
+                <div>
+                    <input type="checkbox" id="bigram" name="bigram">
+                    <label for="bigram">Bigram <span>(Couples of 2 characters)</span></label>
+                </div>
+
+                <div>
+                    <input type="checkbox" id="trigram" name="trigram">
+                    <label for="trigram">Bigram <span>(set of 3 characters) </span></label>
+                </div>
+            </div>
+    
+        </div>
+
+        <!-- Bar char of the text -->
+        <div class="barchart"></div>
+        <div class="engBarchart"></div>
+    </div>
 {% endblock %}
