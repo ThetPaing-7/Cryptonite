@@ -12,6 +12,7 @@
     --primary-color:#3a435d;
     --dropdown-bg-color:black;
     --navTextHover:red;
+    --text-color:black;
 }
 
 .darkmode{
@@ -22,6 +23,7 @@
     --primary-color:#3a435d;
     --dropdown-bg-color:white;
     --navTextHover:red;
+    --text-color:white;
 }
 
 body{

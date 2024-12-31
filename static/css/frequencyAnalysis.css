@@ -9,6 +9,7 @@
     --border-color:#2c2c2c;
     --btn-bg-color:#1a1a1a;
     --btn-text-color:#fff;
+    --text-color:black;
 }
 
 .darkmode{
@@ -22,6 +23,11 @@
     --border-color:#9faee7;
     --btn-bg-color:#5b3bb4;
     --btn-text-color:#fff;
+    --text-color:white;
+}
+
+body{
+  color: var(--text-color);
 }
 
 .grid-container{
