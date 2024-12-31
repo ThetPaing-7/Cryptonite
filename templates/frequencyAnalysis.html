@@ -19,7 +19,7 @@
         <!-- Text input section -->
         <div class="inputSection">
             <!-- page header -->
-            <h2 class="header">frequecny Analysis</h2>
+            <h2 class="header">Frequecny Analysis</h2>
             <div class="input">
                 <label for="sentence">Enter text here:</label><br>
                 <input type="text" id="sentence" name="sentence" required>
@@ -62,11 +62,17 @@
                     <label for="trigram">Bigram <span>(set of 3 characters) </span></label>
                 </div>
             </div>
+            <!-- Calculate frequecny button -->
+             <button id="frequecnybtn" class="frequecny-btn">Calculate Frequency</button>
     
         </div>
 
         <!-- Bar char of the text -->
-        <div class="barchart"></div>
+        <div class="barchart">
+            <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            <!-- Cdn for chart -->
+            <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+        </div>
         <div class="engBarchart"></div>
     </div>
 {% endblock %}

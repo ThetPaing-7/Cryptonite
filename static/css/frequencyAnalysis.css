@@ -1,3 +1,29 @@
+:root{
+    --bg-color: white;
+    --nav-bg-color : black;
+    --nav-text-color: white;
+    --base-variant:white;
+    --primary-color:#3a435d;
+    --dropdown-bg-color:black;
+    --navTextHover:red;
+    --border-color:#2c2c2c;
+    --btn-bg-color:#1a1a1a;
+    --btn-text-color:#fff;
+}
+
+.darkmode{
+    --bg-color: rgb(17, 17, 17);
+    --nav-bg-color : rgb(248, 240, 240);
+    --nav-text-color: rgb(16, 15, 15);
+    --base-variant:white;
+    --primary-color:#3a435d;
+    --dropdown-bg-color:white;
+    --navTextHover:red;
+    --border-color:#9faee7;
+    --btn-bg-color:#5b3bb4;
+    --btn-text-color:#fff;
+}
+
 .grid-container{
     display: grid;
     height: 100vh;
@@ -13,6 +39,10 @@
     align-items: start;
     justify-content: center;
     margin: 0 auto;
+}
+
+.inputSection .header{
+    margin-bottom: 1rem;
 }
 
 .optionGroup{
@@ -33,8 +63,61 @@
     font-weight: bold;
 }
 
+/* Input text type */
+input[type = "text"]{
+  width: 250px;
+  height: 65px;
+  border: 2px solid black;
+}
+
+
+/* Calcute button */
+.frequecny-btn {
+  margin: 7px 0;
+  padding: 10px 20px;
+  border: 2px solid var(--border-color);
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  width: 200px;
+  height: 50px;
+  font-size: 15px;
+}
+
+.frequecny-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.frequecny-btn:hover::after {
+  transform: scale(4);
+}
+
+.frequecny-btn:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+
 .barchart{
-    background-color: blueviolet;
     grid-area: 1 / 2 / 2 / 3;
 }
 
