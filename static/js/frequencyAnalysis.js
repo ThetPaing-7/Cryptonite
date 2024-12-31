@@ -8,7 +8,7 @@ function renderChart() {
         theme: "light1", // Chart theme
         backgroundColor: "transparent", // Background based on theme
         title: {
-            text: "Simple Column Chart with Index Labels",
+            text: "English Letters of Frequencies",
             fontColor: textColor // Title color
         },
         axisY: {
@@ -81,8 +81,7 @@ class frequencyAnalysis{
         this._text = value;
     }
 
-    analysis(){
-        let letters = this._text.split("");
+    analysis(letters){
         for(let i = 0; i < letters.length; i++){
             let key = letters[i].toLowerCase()
             if(key in this._data){
@@ -93,12 +92,28 @@ class frequencyAnalysis{
         }
     }
 
+    // Analysis letters only
     analysisLettersOnly(){
-        for(let key in this._data){
-            if(key.toLocaleLowerCase() !== key.toUpperCase()){
-                delete this._data[key]
-            }
-        }
+        let letters = this._text.split("");
+        letters = letters.filter(x => x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90 ||
+        x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122)
+        return letters
+    }
+
+    // Analysis digits only
+    analysisDigitsOnly(){
+        let numbers = this._text.split("");
+        numbers = numbers.filter(x => x.charCodeAt(0) >= 48 && x.charCodeAt(0) <= 57 )
+        return numbers
+    }
+
+    // Analysis without space
+    withoutSpaceAndSpecial(){
+        let letters = this._text.split("")
+        letters = letters.filter(x =>  x.charCodeAt(0) >= 48 && x.charCodeAt(0) <= 57 || 
+        x.charCodeAt(0) >= 65 && x.charCodeAt(0) <= 90 ||
+        x.charCodeAt(0) >= 97 && x.charCodeAt(0) <= 122 )
+        return letters
     }
 
     get data(){
@@ -106,9 +121,6 @@ class frequencyAnalysis{
     }
 }
 
-let sentence = new frequencyAnalysis("Hello World! This is cs50 and 5O is great")
-sentence.analysis()
-console.log(sentence.data);
-
-sentence.analysisLettersOnly()
+let sentence = new frequencyAnalysis("Hello World! This is cs50 and 50 is great!,@$%&*(%*^*^*^(%")
+sentence.analysis(sentence.analysisDigitsOnly())
 console.log(sentence.data)
