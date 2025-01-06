@@ -65,6 +65,7 @@ function renderChart() {
 // Render the chart
 renderChart()
 
+// To calculate Frequecny of input text
 class frequencyAnalysis{
     
     constructor(text){
@@ -121,6 +122,14 @@ class frequencyAnalysis{
     }
 }
 
-let sentence = new frequencyAnalysis("Hello World! This is cs50 and 50 is great!,@$%&*(%*^*^*^(%")
-sentence.analysis(sentence.analysisDigitsOnly())
-console.log(sentence.data)
+// let sentence = new frequencyAnalysis("Hello World! This is cs50 and 50 is great!,@$%&*(%*^*^*^(%")
+// sentence.analysis(sentence.analysisDigitsOnly())
+// console.log(sentence.data)
+
+class GenerateChart{
+    onlyNumbers = document.getElementById("numbersOnly").checked;
+    onlyLetters = document.getElementById("onlyletters").checked
+    numbersAndLetters = document.getElementById("numbersAndLetters")
+
+    
+}

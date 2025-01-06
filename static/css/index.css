@@ -1,0 +1,123 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: white;
+    --nav-bg-color: black;
+    --nav-text-color: white;
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: black;
+    --navTextHover: red;
+    --text-color: black;
+}
+
+.darkmode {
+    --bg-color: rgb(17, 17, 17);
+    --nav-bg-color: rgb(248, 240, 240);
+    --nav-text-color: rgb(16, 15, 15);
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: white;
+    --navTextHover: red;
+    --text-color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    animation: fadeEffect 0.4s ease;
+}
+
+/* Fade effect for smooth transitions */
+@keyframes fadeEffect {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Nav bar styling */
+.navbarContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg-color);
+    color: var(--nav-text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.leftside {
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.leftside a {
+    text-decoration: none;
+}
+
+.leftside a span {
+    padding: 0;
+}
+
+.rightside {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.rightside div {
+    margin: 3px 10px;
+}
+
+.rightside div a{
+  text-decoration: none;
+  font-size: 16px;
+  color: var(--nav-text-color)
+}
+/* Toggle bar */
+#theme-switch {
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    border-radius: 50%;
+    background-color: var(--base-variant);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.4s ease, transform 0.3s ease;
+}
+
+#theme-switch:hover {
+    transform: scale(1.1);
+}
+
+#theme-switch svg {
+    fill: var(--primary-color);
+    transition: fill 0.4s ease, opacity 0.4s ease;
+}
+
+#theme-switch svg:last-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+    display: block;
+}

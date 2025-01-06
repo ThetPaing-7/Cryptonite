@@ -9,7 +9,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("index.html")
+
+# logIn page
+@app.route("/login")
+def tools():
+    return render_template("login.html")
+
+# Sign Up page
+@app.route("/signup")
+def tools():
+    render_template("signup.html")
 
 
 # Tools page
