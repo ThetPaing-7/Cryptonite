@@ -127,6 +127,5 @@ input[type = "text"]{
 }
 
 .engBarchart{
-    background-color: cadetblue;
     grid-area: 2 / 2 / 3 / 3;
 }

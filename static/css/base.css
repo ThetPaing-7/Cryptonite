@@ -28,6 +28,23 @@
 
 body{
   background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  animation: fadeEffect 0.4s ease;
+}
+
+
+/* Fade effect for smooth transitions */
+@keyframes fadeEffect {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 /* Nav bar styling */
 .navbarContainer{
@@ -36,6 +53,8 @@ body{
     justify-content: space-between;
     background: var(--nav-bg-color);
     color: var(--nav-text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+
 }
 
 .leftside,
@@ -122,20 +141,28 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.3s ease;
+
 }
 
-#theme-switch svg{
-  fill:var(--primary-color)
+#theme-switch:hover {
+    transform: scale(1.1);
 }
 
-#theme-switch svg:last-child{
-  display: none;
+#theme-switch svg {
+    fill: var(--primary-color);
+    transition: fill 0.4s ease, opacity 0.4s ease;
 }
 
-.darkmode #theme-switch svg:first-child{
-  display: none;
+#theme-switch svg:last-child {
+    display: none;
 }
 
-.darkmode #theme-switch svg:last-child{
-  display: block;
+.darkmode #theme-switch svg:first-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+    display: block;
 }
