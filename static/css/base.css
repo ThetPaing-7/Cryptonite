@@ -131,6 +131,20 @@ body{
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Input text style */
+#sentence{
+ text-align: left;
+}
+
+#sentence::placeholder{
+  text-align: left;
+  margin: 5px;
+  padding: 1px;
+  vertical-align: top;
+}
+
+
 /* Start of the toogle bar */
 #theme-switch{
   height: 40px;

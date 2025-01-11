@@ -15,5 +15,26 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Index of coincidence here</h1>
+        <div class="grid-container">
+        <!-- Input Section -->
+        <div class="inputSection">
+            <!-- input text area -->
+            <div class="input">
+                <label for="sentence">Enter text here:</label><br>
+                <input type="text" id="sentence" name="sentence" required>
+            </div>
+
+            <!-- Button for shift Tester -->
+            <button id="shiftTesterbtn" class="shiftTester-btn">Calculate Frequency</button>
+        </div>
+
+        <!-- Display section -->
+         <div class="displaySection">
+            <div id="resultHolder">
+
+            </div>
+
+         </div>
+
+    </div>
 {% endblock %}

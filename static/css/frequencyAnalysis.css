@@ -68,11 +68,19 @@ body{
     font-weight: bold;
 }
 
-/* Input text type */
-input[type = "text"]{
-  width: 250px;
-  height: 65px;
-  border: 2px solid black;
+#sentence {
+  font-size: 20px;
+  width: 200px; 
+  height: 60px; 
+  padding-top: 5px; 
+  padding-left: 5px;
+  box-sizing: border-box; 
+  text-align: left; 
+}
+
+#sentence::placeholder {
+  text-align: left; 
+  color: gray; 
 }
 
 
