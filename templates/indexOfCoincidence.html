@@ -1,19 +1,54 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Index Of coincidence
+    Index Of Coincidence
 {% endblock %}
 
 <!-- Block for child specific css -->
- {% block extar_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/indexOfCoincidence.css') }}">
- {% endblock %}
+{% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/indexOfCoincidence.css') }}">
+{% endblock %}
 
 <!-- Block for child specific js -->
 {% block extra_js %}
-    <script src="{{ url_for('static', filename = 'js/indexOfCoincidence.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/indexOfCoincidence.js') }}" defer></script>
 {% endblock %}
 
 {% block main %}
-    <h1>Index of coincidence here</h1>
+    <div class="grid-container">
+        <!-- Input Section -->
+        <div class="inputSection">
+            <!-- Text Input -->
+            <div class="input">
+                <label for="sentence">Enter text here:</label><br>
+                <input type="text" id="sentence" name="sentence" required>
+            </div>
+
+            <!-- Filter Options -->
+            <div class="optionGroup">
+                <div>
+                    <input type="radio" id="onlyletters" name="filterOption" value="onlyletters" checked>
+                    <label for="onlyletters">Only A to Z</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="numbersOnly" name="filterOption" value="numbersOnly">
+                    <label for="numbersOnly">Only Digits</label>
+                </div>
+
+                <div>
+                    <input type="radio" id="numbersAndLetters" name="filterOption" value="numbersAndLetters">
+                    <label for="numbersAndLetters">Only Letters and Digits</label>
+                </div>
+            </div>
+
+            <!-- Calculate Button -->
+            <button id="ICbtn" class="IC-btn">Calculate Frequency</button>
+        </div>
+
+        <!-- Display Section -->
+        <div class="displaySection">
+            <div id="resultID"></div>
+        </div>
+    </div>
 {% endblock %}

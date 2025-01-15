@@ -91,44 +91,7 @@ class FrequencyAnalysis {
   }
 }
 
-function manageCheckboxStates() {
-  const numCheckbox = document.getElementById("numbersOnly");
-  const letterCheckbox = document.getElementById("onlyletters");
-  const numAndLetterCheckbox = document.getElementById("numbersAndLetters");
-
-  // Enable all checkboxes initially
-  numCheckbox.disabled = false;
-  letterCheckbox.disabled = false;
-  numAndLetterCheckbox.disabled = false;
-
-  // If numbersOnly is selected, disable others
-  if (numCheckbox.checked) {
-    letterCheckbox.checked = false;
-    numAndLetterCheckbox.checked = false;
-  }
-  // If onlyletters is selected, disable others
-  else if (letterCheckbox.checked) {
-    numCheckbox.checked = false;
-    numAndLetterCheckbox.checked = false;
-  }
-  // If numbersAndLetters is selected, disable others
-  else if (numAndLetterCheckbox.checked) {
-    numCheckbox.checked = false;
-    letterCheckbox.checked = false;
-  }
-}
-
-// Call manageCheckboxStates() on page load to initialize states
-window.onload = function () {
-  manageCheckboxStates();
-};
-
-
 document.getElementById("frequecnybtn").addEventListener("click", function () {
-
-  const numCheckbox = document.getElementById("numbersOnly");
-  const letterCheckbox = document.getElementById("onlyletters");
-  const numAndLetterCheckbox = document.getElementById("numbersAndLetters");
 
   const inputText = document.getElementById("sentence").value.trim();
   if (!inputText) {
@@ -141,12 +104,16 @@ document.getElementById("frequecnybtn").addEventListener("click", function () {
   const analyzer = new FrequencyAnalysis(inputText);
 
   let characters = [];
-  if (numCheckbox.checked) {
-    characters = analyzer.analysisDigitsOnly();
-  } else if (letterCheckbox.checked) {
-    characters = analyzer.analysisLettersOnly();
-  } else if (numAndLetterCheckbox.checked) {
-    characters = analyzer.analysisLettersAndDigits();
+  const selectedOption = document.querySelector('input[name="filterOption"]:checked');
+
+  if (selectedOption) {
+    if (selectedOption.value === "numbersOnly") {
+      characters = analyzer.analysisDigitsOnly();
+    } else if (selectedOption.value === "onlyletters") {
+      characters = analyzer.analysisLettersOnly();
+    } else if (selectedOption.value === "numbersAndLetters") {
+      characters = analyzer.analysisLettersAndDigits();
+    }
   } else {
     characters = inputText.split("");
   }
@@ -156,5 +123,6 @@ document.getElementById("frequecnybtn").addEventListener("click", function () {
   const dataPoints = Object.entries(analyzer.data).map(([label, y]) => ({ label, y }));
 
   renderChart("inputTextChart", "Input Text Frequencies", dataPoints);
-  
+
 });
+

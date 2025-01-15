@@ -25,36 +25,34 @@
                 <input type="text" id="sentence" name="sentence" required>
             </div>
             <div class="optionGroup">
-                <!-- Ask which option to select -->
-                <div>
-                    <!-- Only letters -->
-                    <input type="checkbox" id="onlyletters" name="onlyletters">
-                    <label for="onlyletters">Only A to Z</label>
-                </div>
+                    <!-- Ask which option to select -->
+                    <div>
+                        <!-- Only letters -->
+                        <input type="radio" id="onlyletters" name="filterOption" value="onlyletters">
+                        <label for="onlyletters">Only A to Z</label>
+                    </div>
 
-                <!-- To include space -->
-                <div>
-                    <input type="checkbox" id="numbersOnly" name="numbersOnly">
-                    <label for="numbersOnly">Only Digits</label>
-                </div>
+                    <!-- To include space -->
+                    <div>
+                        <input type="radio" id="numbersOnly" name="filterOption" value="numbersOnly">
+                        <label for="numbersOnly">Only Digits</label>
+                    </div>
 
-                <div>
-                    <input type="checkbox" id="numbersAndLetters" name="numbersAndLetters">
-                    <label for="numbersAndLetters">Only Letters and digit</label>
-                </div>
-
-    
-            </div> 
-    
+                    <div>
+                        <input type="radio" id="numbersAndLetters" name="filterOption" value="numbersAndLetters">
+                        <label for="numbersAndLetters">Only Letters and Digit</label>
+                    </div>
+            </div>
+            <!-- Bigram or trigram -->
             <div class="analtzeopt">
                 <div class="analysisHeader">Analyze Option</div>
                 <div>
-                    <input type="checkbox" id="bigram" name="bigram">
+                    <input type="radio" id="bigram" name="bigram">
                     <label for="bigram">Bigram <span>(Couples of 2 characters)</span></label>
                 </div>
 
                 <div>
-                    <input type="checkbox" id="trigram" name="trigram">
+                    <input type="radio" id="trigram" name="trigram">
                     <label for="trigram">Bigram <span>(set of 3 characters) </span></label>
                 </div>
             </div>
