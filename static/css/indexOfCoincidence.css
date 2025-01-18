@@ -12,8 +12,8 @@
     --text-color:black;
     --containerbg-color: #f9f9f9;
     --result-color:black;
-    --result-hover:#180161;
-    --containerbg-hover-color: #EEF7FF;
+    --result-hover:#d564d9;
+    --containerbg-hover-color: #287ac1;
 }
 
 .darkmode{
@@ -36,6 +36,7 @@
 }
 
 body{
+  background-color: var(--bg-color);
   color: var(--text-color);
 }
 
@@ -125,4 +126,78 @@ label[for = "sentence"]{
 .IC-btn:hover {
   border-color: #666666;
   background: #292929;
+}
+
+
+.result-container {
+    position: relative;
+    padding: 10px;
+    margin-top: 20px;
+    border: 2px solid #0078d7; /* Aesthetic border color */
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--containerbg-color), var(--containerbg-color));
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.result-container.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.ic-result {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    color: var(--result-color);
+    animation: fadeIn 1s ease;
+}
+
+.ic-result:hover{
+  color: var(--result-hover);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* New container for key length results with fade-in and fade-out animation */
+.keyLengthDiv {
+    background-color: var(--containerbg-color); /* Light green background */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #388e3c;
+    border-radius: 5px;
+    font-size: 16px;
+    color: var(--result-color);
+    opacity: 0; /* Start invisible */
+    transition: opacity 1s ease-in-out; /* Smooth fade-in and fade-out */
+}
+
+.keyLengthDiv:hover,
+.ic-result:hover {
+  color: var(--result-hover);
+}
+
+/* Show container when the animation is triggered (fade-in) */
+.keyLengthDiv.show {
+    opacity: 1; /* Fade-in */
+}
+
+
+/* Show result containers */
+.result-container.show {
+    opacity: 1;
+    transform: translateY(0);
 }
