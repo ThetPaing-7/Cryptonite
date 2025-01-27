@@ -1,0 +1,163 @@
+:root {
+    --buttoncolor: #3a86ff;
+    --primary: #3a86ff;
+    --background: white;
+    --card-bg: #F8FAFC;
+    --text: black;
+    --lessonHover: #CDDEFF;
+}
+
+.darkmode {
+    --primary: #3a86ff;
+    --background: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text: rgb(255, 255, 255);
+    --buttoncolor: #3a86ff;
+    --lessonHover: #3a3a3a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.course-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sidebar {
+    background: var(--card-bg);
+    padding: 1rem;
+    border-radius: 10px;
+    height: fit-content;
+}
+
+.lesson-item {
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lesson-item:hover {
+    background: var(--lessonHover);
+}
+
+.content-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.section {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+}
+
+.section-title {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--lessonHover);
+    padding-bottom: 0.5rem;
+}
+
+.assignment-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.assignment-link {
+    color: var(--primary);
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.assignment-link:hover {
+    background: var(--lessonHover);
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #333;
+    border-radius: 4px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.progress-percentage-box {
+    width: 60px;
+    height: 60px;
+    background: var(--card-bg);
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.progress-percentage-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(58, 134, 255, 0.5);
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+button {
+    background: var(--buttoncolor);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    transition: opacity 0.2s;
+}
+
+button:hover {
+    opacity: 0.9;
+}

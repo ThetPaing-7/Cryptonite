@@ -1,10 +1,11 @@
 import sqlite3
-from flask import Flask, flash, redirect, render_template, request, session, g
+from flask import Flask, redirect, render_template, request, session, g
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 # Configure application
 app = Flask(__name__)
+DATABASE = 'storage.db'
 
 # Configure session to use filesystem (instead of signed cookies)
 app.config["SESSION_PERMANENT"] = False
@@ -12,25 +13,22 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Database configuration
-DATABASE = "finance.db"
-
 def get_db():
-    """Open a new database connection if none exists for the current context."""
-    if "db" not in g:
-        g.db = sqlite3.connect(DATABASE, check_same_thread=False)
-        g.db.row_factory = sqlite3.Row  # Return rows as dictionaries
-    return g.db
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+        db.row_factory = sqlite3.Row  # Return rows as dictionaries
+    return db
 
 @app.teardown_appcontext
-def close_db(exception):
-    """Close the database connection at the end of the request."""
-    db = g.pop("db", None)
+def close_connection(exception):
+    db = getattr(g, '_database', None)
     if db is not None:
         db.close()
 
 @app.route("/")
 def home():
-    return render_template("base.html")
+    return render_template("startPage.html")
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -38,25 +36,24 @@ def login():
     session.clear()  # Forget any user_id
 
     if request.method == "POST":
-        # Ensure username was submitted
-        if not request.form.get("username"):
-            return apology("must provide username", 403)
+        username = request.form.get("username")
+        password = request.form.get("password")
 
-        # Ensure password was submitted
-        elif not request.form.get("password"):
-            return apology("must provide password", 403)
+        # Validate input
+        if not username:
+            return "Username is required!", 400
+        elif not password:
+            return "Password is required!", 400
 
         # Query database for username
         db = get_db()
         rows = db.execute(
-            "SELECT * FROM users WHERE username = ?", (request.form.get("username"),)
+            "SELECT * FROM users WHERE username = ?", (username,)
         ).fetchall()
 
         # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(
-            rows[0]["hash"], request.form.get("password")
-        ):
-            return apology("invalid username and/or password", 403)
+        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
+            return "Invalid username and/or password!", 400
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
@@ -81,29 +78,36 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
+        # Validate input
         if not username:
-            return apology("Username is required!")
+            return "Username is required!", 400
         elif not password:
-            return apology("Password is required!")
+            return "Password is required!", 400
         elif not confirmation:
-            return apology("Password confirmation is required!")
+            return "Password confirmation is required!", 400
 
         if password != confirmation:
-            return apology("Passwords do not match!")
+            return "Passwords do not match!", 400
 
+        # Hash the password
         hash = generate_password_hash(password)
 
+        # Insert new user into the database
         db = get_db()
         try:
             db.execute(
                 "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash)
             )
             db.commit()
-            return redirect("/")
+            return redirect("/login")
         except sqlite3.IntegrityError:
-            return apology("Username has already been registered!")
+            return "Username already exists!", 400
     else:
         return render_template("signup.html")
+
+@app.route("/learn")
+def learns():
+    return render_template("learn.html")
 
 @app.route("/tools")
 def tools():

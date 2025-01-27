@@ -56,6 +56,7 @@ body{
 
 .displaySection{
     grid-area: 2 / 1 / 3 / 2 ;
+    margin: 0px 10px;
 }
 
 .input{

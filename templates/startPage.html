@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+
+{% block title %}
+    Welcome
+{% endblock %}
+
+<!-- Block for child specific css -->
+ {% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/startPage.css') }}">
+ {% endblock %}
+
+ {% block extra_js %}
+    <script src="{{ url_for('static', filename='js/startPage.js') }}" defer></script>
+{% endblock %}
+
+{% block main %}
+    
+     <section id="hero-section">
+        <div id="intro-content">
+            <div id="intro-text">
+                <h1>EXPLORE</h1>
+                <p>Hidden message are everyone, with the eye of curious and excitement, may only find the meaning of it.</p>
+                <p>This project is intend to explore various pencil-paper-cphier with various methods and learning, via someuseful tools
+                </p>
+            </div>
+            <div id="hero-img"></div>
+        </div>
+    </section>
+    <main>
+        <div class="title-div">
+            <h2 id="main-section-title">SOME OF chiphers</h2>
+        </div>
+        <div class="exoplanets">
+            <div class="exoplanet">
+                <img src="../static/images/cryptography.png" alt="image of kepler-36-b">
+                <p>Kepler-36 b</p>
+                <p>[Super Earth]</p>
+            </div>
+            <div class="exoplanet">
+                <img src="../static/images/quantum.png" alt="image of kepler-22-b">
+                <p>Kepler-22 b</p>
+                <p>[Super Earth]</p>
+            </div>
+            <div class="exoplanet">
+                <img src="../static/images/blockchain.png" alt="image of GJ-504-b">
+                <p>GJ-504-b</p>
+                <p>[Gas Giant]</p>
+            </div>
+            <div class="exoplanet">
+                <img src="../static/images/cryptography.png" alt="image of 55-cancri-e">
+                <p>55 Cancri e</p>
+                <p>[Super Earth]</p>
+            </div>
+        </div>
+    </main>
+    <section>
+        <div id="explore-section">
+            <div class="card">
+                <div class="card-text">
+                    <h3>Just names aren't enough right?...Wanna explore more exoplanets?</h3>
+                    <p>Click EXLORE to check out NASA's amazing site</p>
+                </div>
+                <button class="btn" type="submit"><a href="https://exoplanets.nasa.gov/eyes-on-exoplanets/#/"
+                        target="_blank">EXPLORE</a></button>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>Cryptonite</p>
+        <p>
+            <a href="https://www.flaticon.com/free-icons/planet" title="planet icons" target="_blank">Planet
+                icons created by Freepik - Flaticon</a>
+            &
+            <a href="https://unsplash.com/@simonppt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                target="_blank">Blue planet photo by Simon Lee on</a>
+            <a href="https://unsplash.com/s/photos/planets?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                target="_blank">Unsplash</a>
+        </p>
+    </footer>
+{% endblock %}
