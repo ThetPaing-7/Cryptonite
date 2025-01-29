@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, redirect, render_template, request, session, g
+from flask import Flask, flash, redirect, render_template, request, session, g
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -41,9 +41,11 @@ def login():
 
         # Validate input
         if not username:
-            return "Username is required!", 400
+            flash("Username is required!", "error")
+            return redirect("/login")
         elif not password:
-            return "Password is required!", 400
+            flash("Password is required!", "error")
+            return redirect("/login")
 
         # Query database for username
         db = get_db()
@@ -53,16 +55,18 @@ def login():
 
         # Ensure username exists and password is correct
         if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
-            return "Invalid username and/or password!", 400
+            flash("Invalid username and/or password!", "error")
+            return redirect("/login")
 
         # Remember which user has logged in
         session["user_id"] = rows[0]["id"]
 
         # Redirect user to home page
+        flash("You were successfully logged in!", "success")
         return redirect("/")
 
     else:
-        return render_template("login.html")
+        return render_template("tools.html")
 
 @app.route("/logout")
 def logout():
@@ -80,30 +84,40 @@ def signup():
 
         # Validate input
         if not username:
-            return "Username is required!", 400
+            flash("Username is required!", "error")
+            return redirect("/signup")
         elif not password:
-            return "Password is required!", 400
+            flash("Password is required!", "error")
+            return redirect("/signup")
         elif not confirmation:
-            return "Password confirmation is required!", 400
-
+            flash("Password confirmation is required!", "error")
+            return redirect("/signup")
         if password != confirmation:
-            return "Passwords do not match!", 400
+            flash("Passwords do not match!", "error")
+            return redirect("/signup")
 
-        # Hash the password
-        hash = generate_password_hash(password)
-
-        # Insert new user into the database
         db = get_db()
-        try:
-            db.execute(
-                "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash)
-            )
-            db.commit()
-            return redirect("/login")
-        except sqlite3.IntegrityError:
-            return "Username already exists!", 400
-    else:
-        return render_template("signup.html")
+
+        # Check if username already exists
+        existing_user = db.execute(
+            "SELECT id FROM users WHERE username = ?", (username,)
+        ).fetchone()
+
+        if existing_user:
+            flash("Username already exists!", "error")
+            return redirect("/signup")
+
+        # Hash the password and insert new user
+        hash = generate_password_hash(password)
+        db.execute(
+            "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash)
+        )
+        db.commit()
+
+        flash("You were successfully registered!", "success")
+        return redirect("/login")
+
+    return render_template("login.html")
 
 @app.route("/learn")
 def learns():

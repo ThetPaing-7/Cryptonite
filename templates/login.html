@@ -12,32 +12,23 @@
     <script src="{{ url_for('static', filename='js/login.js') }}" defer></script>
 {% endblock %}
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-        <div class="flash-messages">
-            {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">{{ message }}</div>
-            {% endfor %}
-        </div>
-    {% endif %}
-{% endwith %}
-
 {% block main %}
- <div class="container" id="container">
+
+    <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="/signup" method="post">
                 <h1>Create Account</h1>
-                <input type="text" placeholder="Name">
-                <input type="password" placeholder="Password">
-                <input type="password" placeholder="Confrim your password">
+                <input type="text" placeholder="Name" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <input type="password" placeholder="Confirm your password" name="confirmation" required>
                 <button>Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
             <form action="/login" method="post">
                 <h1>Sign In</h1>
-                <input type="text" placeholder="Name">
-                <input type="password" placeholder="Password">
+                <input type="text" placeholder="Name" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
                 <button>Sign In</button>
             </form>
         </div>
@@ -56,5 +47,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
