@@ -13,9 +13,9 @@
 }
 
 .darkmode{
-    --bg-color: rgb(17, 17, 17);
+    --bg-color: #101218;
     --nav-bg-color : rgb(248, 240, 240);
-    --nav-text-color: rgb(16, 15, 15);
+    --nav-text-color: #101218;
     --base-variant:white;
     --primary-color:#3a435d;
     --dropdown-bg-color:white;

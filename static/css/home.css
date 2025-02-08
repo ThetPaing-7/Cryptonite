@@ -11,8 +11,10 @@
     --base-variant:white;
     --primary-color:#3a435d;
     --dropdown-bg-color:#101218;
+    
     --navTextHover:red;
     --text-color:#101218;
+    --drop--hover-color:rgb(182, 219, 255);
 }
 
 .darkmode{
@@ -24,6 +26,9 @@
     --dropdown-bg-color:white;
     --navTextHover:red;
     --text-color:white;
+    --drop--hover-color:rgb(182, 219, 255);
+    --btn-bg-color:#5b3bb4;
+    --btn-text-color:#fff;
 }
 
 .container{
@@ -72,9 +77,79 @@
 
 .thirdArea{
     grid-area: 1/3/3/4;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
 }
 
-.buttonArea{
-    grid-area: 3 / 2 / 4 / 3;
+.keysgp{
+    grid-area: 1/1/2/2;
 }
 
+
+.conversionMethod{
+    grid-area: 2/1/3/2;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 5px 10px;
+}
+
+button{
+    grid-area: 3 / 1 / 4 / 2;
+    margin: 0 auto;
+    padding: 10px 20px;
+  border: 2px solid var(--border-color);
+  background-color: var(--btn-bg-color);
+  color: var(--btn-text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.4s ease;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  font-weight: bold;
+  width: 200px;
+  height: 50px;
+  font-size: 15px;
+}
+
+button::after{
+     content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.25) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+
+button:hover::after {
+  transform: scale(4);
+}
+
+button:hover {
+  border-color: #666666;
+  background: #292929;
+}
+
+
+select{
+    width: 100%;
+    height: 25px;
+    border: 1px solid var(--dropdown-bg-color);
+    cursor: pointer;
+    outline: none;
+    border-radius: 7px;
+}
+
+select:hover{
+    background-color: var(--drop--hover-color);
+}

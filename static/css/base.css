@@ -27,6 +27,8 @@
 }
 
 body{
+  max-width: 100%;
+  overflow-x: hidden;
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.4s ease, color 0.4s ease;
@@ -49,6 +51,7 @@ body{
 /* Nav bar styling */
 .navbarContainer{
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     background: var(--nav-bg-color);

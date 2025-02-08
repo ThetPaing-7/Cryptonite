@@ -48,13 +48,16 @@
 
                 <!-- Conversion Method -->
                 <div class="conversionMethod">
-                    <div>
-                        <input type="radio" id="encrypt" name="method" value="encrypt">
-                        <label for="encrypt">Encryption</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="decrypt" name="method" value="decrypt">
-                        <label for="decrypt">Decryption</label>
+                    <p>Please select the process</p>
+                    <div style="display: flex; gap: 10px;">
+                        <div>
+                            <input type="radio" id="encrypt" name="method" value="encrypt">
+                            <label for="encrypt">Encryption</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="decrypt" name="method" value="decrypt">
+                            <label for="decrypt">Decryption</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,9 +68,9 @@
         <!-- End of input section -->
 
             <!-- Button area -->
-         <div class="buttonArea">
-            <button id="transform">Transform</button>
-         </div>
+        
+        <button id="transform">Transform</button>
+     
         
         
          <!-- Display sectin -->
