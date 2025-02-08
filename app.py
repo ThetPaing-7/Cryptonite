@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, flash, redirect, render_template, request, session, g
+from flask import Flask, flash, redirect, render_template, request, session, g, url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -27,52 +27,47 @@ def close_connection(exception):
         db.close()
 
 @app.route("/")
-def home():
+def start():
     return render_template("startPage.html")
+
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """Log in the user."""
-    session.clear()  # Forget any user_id
+    session.clear()  # Clear existing session
 
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
 
-        # Validate input
-        if not username:
-            flash("Username is required!", "error")
-            return redirect("/login")
-        elif not password:
-            flash("Password is required!", "error")
-            return redirect("/login")
+        if not username or not password:
+            flash("Username and password are required!", "error")
+            return redirect(url_for("login"))
 
-        # Query database for username
         db = get_db()
-        rows = db.execute(
-            "SELECT * FROM users WHERE username = ?", (username,)
-        ).fetchall()
+        user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
-        # Ensure username exists and password is correct
-        if len(rows) != 1 or not check_password_hash(rows[0]["hash"], password):
-            flash("Invalid username and/or password!", "error")
-            return redirect("/login")
+        if user is None:
+            flash("Invalid username!", "error")
+            return redirect(url_for("login"))
 
-        # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        if not check_password_hash(user["hash"], password):
+            flash("Invalid password!", "error")
+            return redirect(url_for("login"))
 
-        # Redirect user to home page
-        flash("You were successfully logged in!", "success")
-        return redirect("/")
+        # Store user in session
+        session["user_id"] = user["id"]
+        flash("Login successful!", "success")
+        return redirect(url_for("home"))
 
-    else:
-        return render_template("tools.html")
+    return render_template("home.html")
 
 @app.route("/logout")
 def logout():
     """Log the user out."""
-    session.clear()  # Forget any user_id
-    return redirect("/")
+    session.clear()
+    flash("You have been logged out!", "info")
+    return redirect(url_for("login"))
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
@@ -82,42 +77,34 @@ def signup():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
-        # Validate input
-        if not username:
-            flash("Username is required!", "error")
-            return redirect("/signup")
-        elif not password:
-            flash("Password is required!", "error")
-            return redirect("/signup")
-        elif not confirmation:
-            flash("Password confirmation is required!", "error")
-            return redirect("/signup")
+        if not username or not password or not confirmation:
+            flash("All fields are required!", "error")
+            return redirect(url_for("login"))
+
         if password != confirmation:
             flash("Passwords do not match!", "error")
-            return redirect("/signup")
+            return redirect(url_for("login"))
 
         db = get_db()
-
-        # Check if username already exists
-        existing_user = db.execute(
-            "SELECT id FROM users WHERE username = ?", (username,)
-        ).fetchone()
+        existing_user = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()
 
         if existing_user:
             flash("Username already exists!", "error")
-            return redirect("/signup")
+            return redirect(url_for("login"))
 
-        # Hash the password and insert new user
-        hash = generate_password_hash(password)
-        db.execute(
-            "INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash)
-        )
+        hash_password = generate_password_hash(password)
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash_password))
         db.commit()
 
-        flash("You were successfully registered!", "success")
-        return redirect("/login")
+        flash("Registration successful! You can now log in.", "success")
+        return redirect(url_for("login"))
 
     return render_template("login.html")
+
+
+@app.route("/home")
+def home():
+    return render_template("home.html")
 
 @app.route("/learn")
 def learns():

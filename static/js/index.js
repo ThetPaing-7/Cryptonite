@@ -21,8 +21,14 @@ themeSwitch.addEventListener("click",()=>{
 
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
-        let alerts = document.querySelectorAll(".alert");
-        alerts.forEach(alert => alert.style.display = "none");
-    }, 3000); // Messages disappear after 3 seconds
+        let flashMessages = document.querySelectorAll(".flash-message");
+        flashMessages.forEach(msg => {
+            msg.style.opacity = "0";
+            setTimeout(() => msg.remove(), 500);
+        });
+    }, 5000);
 });
+
+
+
 

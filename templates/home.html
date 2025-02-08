@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="header">
+            <h1>Home page here</h1>
+        </div>
+        <!-- Input Section -->
+        <div class="inputSection">
+            <!--Method Section -->
+            <div class="firstArea">
+                <label for="cipherSelecter" class="prompt">Choose a cipher method</label>
+                
+                <select name="cipherMethod" id="cipherSelect">
+                    <option value="">--Please choose an option--</option>
+                    <option value="revrse">Reverse</option>
+                    <option value="caesar">Caesar</option>
+                    <option value="substitution">substitution</option>
+                    <option value="bulb">Bulb</option>
+                    <option value="garbage">Garbage</option>
+                    <option value="multiplicate">Multiplicate</option>
+                </select>
+
+            </div>
+            <!-- Input Section -->
+            <div class="secondArea">
+                <h3 class="prompt">Please enter the text here</h3>
+                <textarea name="inputText" id="inputText" rows="5" cols="33"></textarea>
+            </div>
+
+            <!-- Convart section -->
+            <div class="thirdArea">
+                <div class="keysgp">
+
+                </div>
+
+                <!-- Conversion Method -->
+                <div class="conversionMethod">
+                    <div>
+                        <input type="radio" id="encrypt" name="method" value="encrypt">
+                        <label for="encrypt">Encryption</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="decrypt" name="method" value="decrypt">
+                        <label for="decrypt">Decryption</label>
+                    </div>
+                </div>
+            </div>
+
+        
+
+        </div>
+        <!-- End of input section -->
+
+            <!-- Button area -->
+         <div class="buttonArea">
+            <button id="transform">Transform</button>
+         </div>
+        
+        
+         <!-- Display sectin -->
+        <div class="displaySection">
+
+        </div>
+
+    </div>
+    
+{% endblock %}

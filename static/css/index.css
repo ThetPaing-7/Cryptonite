@@ -6,19 +6,19 @@
 
 :root {
     --bg-color: white;
-    --nav-bg-color: black;
+    --nav-bg-color: #101218;
     --nav-text-color: white;
     --base-variant: white;
     --primary-color: #3a435d;
-    --dropdown-bg-color: black;
+    --dropdown-bg-color: #101218;
     --navTextHover: red;
     --text-color: black;
 }
 
 .darkmode {
-    --bg-color: rgb(17, 17, 17);
+    --bg-color: #101218;
     --nav-bg-color: rgb(248, 240, 240);
-    --nav-text-color: rgb(16, 15, 15);
+    --nav-text-color: #101218;
     --base-variant: white;
     --primary-color: #3a435d;
     --dropdown-bg-color: white;
@@ -123,27 +123,32 @@ body {
 }
 
 
-/* Flash messages styling */
-.flash-messages {
+
+/* fLak message */
+#flash-messages {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     z-index: 1000;
 }
 
-.alert {
-    padding: 15px;
-    margin-bottom: 10px;
+.flash-message {
+    padding: 10px 15px;
     border-radius: 5px;
+    margin-bottom: 10px;
+    font-weight: bold;
     color: white;
-    font-size: 14px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    display: inline-block;
 }
 
-.alert-success {
-    background-color: #4CAF50; /* Green */
+.flash-message.success { background-color: #4CAF50; }  /* Green */
+.flash-message.error { background-color: #F44336; }    /* Red */
+.flash-message.info { background-color: #2196F3; }     /* Blue */
+.flash-message.warning { background-color: #ff9800; }  /* Orange */
+
+.close-btn {
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
 }
 
-.alert-error {
-    background-color: #f44336; /* Red */
-}
