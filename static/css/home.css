@@ -172,3 +172,18 @@ h1{
             0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #00ffff; }
             100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00ffff; }
 }
+
+
+.keysgp label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.keysgp input {
+    width: 60%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
