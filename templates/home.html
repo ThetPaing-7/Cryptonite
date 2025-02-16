@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{{ url_for('static', filename='js/home.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/home.js') }}" type="module" defer></script>
 {% endblock %}
 
 {% block main %}
@@ -25,12 +25,15 @@
                 
                 <select name="cipherMethod" id="cipherSelect">
                     <option value="">--Please choose an option--</option>
+                    <option value="decimal">Decimal</option>
+                    <option value="binary">Binary</option>
+                    <option value="hexadecimal">Hexadecimal</option>
                     <option value="reverse">Reverse</option>
                     <option value="caesar">Caesar</option>
                     <option value="substitution">Substitution</option>
                     <option value="bulb">Bulb</option>
                     <option value="garbage">Garbage</option>
-                    <option value="multiplicate">Multiplicate</option>
+                    <option value="multiplicate">Multiplicatin</option>
                 </select>
 
             </div>
@@ -68,7 +71,7 @@
         <button id="transform">Transform</button>
      
         <!-- Display section -->
-        <div class="displaySection">
+        <div class="displaySection" id="displaySection">
 
         </div>
 

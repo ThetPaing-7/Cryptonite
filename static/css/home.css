@@ -174,8 +174,14 @@ h1{
 }
 
 
+.keysgp{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .keysgp label {
-    display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
@@ -183,7 +189,11 @@ h1{
 .keysgp input {
     width: 60%;
     padding: 5px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.displaySection{
+    grid-area: 4/1/5/2;
+    background-color: rgb(72, 36, 36);
 }

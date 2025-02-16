@@ -1,4 +1,4 @@
-class CeasarCipher {
+export class CeasarCipher {
     constructor(text, offset) {
         this.text = text;
         this.offset = offset;
@@ -76,41 +76,31 @@ class CeasarCipher {
 // console.log(decryptedText4); // Output: abcXYZ123
 
 
-class Binary{
-    constructor(text){
+export class Binary {
+    constructor(text) {
         this.text = text;
     }
 
-    encrypt(){
-        let words = this.text.split(" ")
-        let bits = []
-
-        for(let i = 0; i < words.length; i++){
-            let word = words[i].split("")
-            for(let j = 0; j < word.length; j++){
-                bits.push(word[j].charCodeAt(0).toString(2).padStart(8,"0"))
-            }
+    encrypt() {
+        let binary = "";
+        for (let i = 0; i < this.text.length; i++) {
+            let bin = this.text.charCodeAt(i).toString(2).padStart(8, "0");
+            binary += bin + " ";
         }
-
-        return bits.join(" ")
+        return binary.trim();
     }
 
-
-    decrypt(){
-      let bits = this.text.split(" ")
-      let plainText = ""
-
-      for(let i = 0; i < bits.length; i++){
-        plainText += String.fromCharCode(parseInt(bits[i],2))
-      }
-
-      return plainText;
+    decrypt(binary) {
+        let binaryArr = binary.split(" ");
+        let text = "";
+        for (let i = 0; i < binaryArr.length; i++) {
+            text += String.fromCharCode(parseInt(binaryArr[i], 2));
+        }
+        return text;
     }
-
 }
 
-
-class Hexadecimal{
+export class Hexadecimal{
     constructor(text){
         this.text = text;
     }
@@ -181,7 +171,7 @@ class Hexadecimal{
 // console.log("Directly encrypt and decrypt:", new Hexadecimal("Direct test").decrypt(new Hexadecimal("Direct test").encrypt()));
 
 
-class Decimal{
+export class Decimal{
     constructor(text){
         this.text = text;
     }
@@ -250,16 +240,213 @@ class Decimal{
 
 // //Direct Encryption/Decryption
 // console.log("Directly encrypt and decrypt (Decimal):", new Decimal("Direct test").decrypt(new Decimal("Direct test").encrypt()));
-
-class Bulb extends Binary{
-    constructor(text){
+export class Bulb extends Binary {
+    constructor(text) {
         super(text);
     }
 
-
-    encrypt(){
+    encrypt() {
         let binary = super.encrypt();
-        
+        let bulbs = "";
+
+        let byte = binary.split(" ");
+        for (let i = 0; i < byte.length; i++) {
+            let bits = byte[i];
+            for (let j = 0; j < bits.length; j++) {
+                if (bits[j] == "1") {
+                    bulbs += "🟡";
+                } else if (bits[j] == "0") {
+                    bulbs += "⚫";
+                }
+            }
+            bulbs += " ";
+        }
+
+        return bulbs.trim();
     }
 
+    decrypt(bulbs) {
+        let binary = "";
+        for (let i = 0; i < bulbs.length; i++) {
+            if (bulbs[i] === "🟡") {
+                binary += "1";
+            } else if (bulbs[i] === "⚫") {
+                binary += "0";
+            } else {
+                binary += " ";
+            }
+        }
+        return super.decrypt(binary.trim());
+    }
+}
+
+
+export class LengthFactorialEncryption {
+    constructor(text, padding) {
+        this.text = text;
+        this.padding = padding;
+    }
+
+    encrypt() {
+        // Generate random padding (rubbish)
+        let rubbish = "";
+        for (let i = 0; i < this.padding; i++) {
+            rubbish += String.fromCharCode(33 + Math.floor(Math.random() * 94)); // Random printable character
+        }
+
+        // Add rubbish to the original message
+        let paddedMessage = this.text + rubbish;
+        let indices = [];
+
+        // Generate indices (1-based position in the shuffled string)
+        for (let i = 0; i < paddedMessage.length; i++) {
+            indices.push(i + 1);
+        }
+
+        // Shuffle indices (representing the character positions in encrypted form)
+        for (let i = indices.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+
+        // Create the encrypted message
+        let shuffledMessage = "";
+        for (let i = 0; i < indices.length; i++) {
+            shuffledMessage += paddedMessage[indices[i] - 1];
+        }
+
+        // Generate the key
+        let key = `p${this.padding}[${indices.join("-")}]`;
+
+        return { encrypted: shuffledMessage, key };
+    }
+
+    decrypt(encryptedText, key) {
+        let match = key.match(/p(\d+)\[(.+)\]/);
+        let rubbishCount = parseInt(match[1]); 
+        let positions = match[2].split("-").map(Number); 
+
+        let originalTextArray = new Array(positions.length);
+        for (let i = 0; i < positions.length; i++) {
+            originalTextArray[positions[i] - 1] = encryptedText[i];
+        }
+
+        // Remove rubbish
+        return originalTextArray.slice(0, originalTextArray.length - rubbishCount).join("");
+    }
+}
+
+// Example Usage
+// let lfe = new LengthFactorialEncryption("codewars", 10);
+// let { encrypted, key } = lfe.encrypt();
+// console.log("Encrypted:", encrypted);
+// console.log("Key:", key);
+// console.log("Decrypted:", lfe.decrypt(encrypted, key));
+
+export class Reverse {
+    constructor(text) {
+        this.text = text;
+    }
+
+    encrypt() {
+        return this.#process(this.text);
+    }
+
+    decrypt() {
+        return this.#process(this.encrypt()); 
+    }
+
+    #process(input) {
+        let chars = input.split('');
+        let letters = [];
+
+        // Extract letters (ignoring spaces)
+        for (let char of chars) {
+            if (char !== ' ') {
+                letters.push(char);
+            }
+        }
+
+        // Reverse the letters array
+        letters.reverse();
+
+        let result = [];
+        let letterIndex = 0;
+
+        for (let char of chars) {
+            if (char === ' ') {
+                result.push(' '); 
+            } else {
+                result.push(letters[letterIndex]);
+                letterIndex++;
+            }
+        }
+
+        return result.join('');
+    }
+}
+
+export class Multiplicate {
+    constructor(text, offset) {
+        this.text = text;
+        this.offset = offset;
+
+        // Find modular inverse of offset under modulo 26
+        this.inverseOffset = this.modInverse(offset, 26);
+        if (this.inverseOffset === -1) {
+            throw new Error("Offset must be coprime with 26 for decryption to work.");
+        }
+    }
+
+    // Function to compute modular inverse using Extended Euclidean Algorithm
+    modInverse(a, m) {
+        for (let x = 1; x < m; x++) {
+            if ((a * x) % m === 1) {
+                return x;
+            }
+        }
+        return -1; // No inverse exists
+    }
+
+    encrypt() {
+        let cipherText = "";
+
+        for (let char of this.text) {
+            let charCode = char.charCodeAt(0);
+            let newCharCode;
+
+            if (charCode >= 65 && charCode <= 90) { // Uppercase
+                newCharCode = (((charCode - 65) * this.offset) % 26) + 65;
+            } else if (charCode >= 97 && charCode <= 122) { // Lowercase
+                newCharCode = (((charCode - 97) * this.offset) % 26) + 97;
+            } else {
+                newCharCode = charCode;
+            }
+
+            cipherText += String.fromCharCode(newCharCode);
+        }
+
+        return cipherText;
+    }
+
+    decrypt() {
+        let plainText = "";
+
+        for (let char of this.text) {
+            let charCode = char.charCodeAt(0);
+            let newCharCode;
+
+            if (charCode >= 65 && charCode <= 90) { // Uppercase
+                newCharCode = (((charCode - 65) * this.inverseOffset) % 26 + 26) % 26 + 65;
+            } else if (charCode >= 97 && charCode <= 122) { // Lowercase
+                newCharCode = (((charCode - 97) * this.inverseOffset) % 26 + 26) % 26 + 97;
+            } else {
+                newCharCode = charCode;
+            }
+
+            plainText += String.fromCharCode(newCharCode);
+        }
+
+        return plainText;
+    }
 }
