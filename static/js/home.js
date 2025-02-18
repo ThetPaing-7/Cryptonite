@@ -1,4 +1,4 @@
-import { CeasarCipher, Binary, Hexadecimal, Decimal, Reverse, Bulb, LengthFactorialEncryption } from './chipherGenerator.js';
+import { CeasarCipher, Binary, Hexadecimal, Decimal, Reverse, Bulb, LengthFactorialEncryption, Multiplicate } from './chipherGenerator.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     const cipherSelect = document.getElementById('cipherSelect');
@@ -21,8 +21,22 @@ document.addEventListener('DOMContentLoaded', function () {
                     <input type="text" id="${selectedCipher}Key" name="${selectedCipher}Key">`;
                 break;
             case 'multiplicate':
-                keyInputHTML = `<label for="multiplicateKey">Multiplicate Key:</label>
-                    <input type="number" id="multiplicateKey" name="multiplicateKey" min="1">`;
+                keyInputHTML = `<label for="multiplicateKey">Multiplicate Key (Coprime with 26):</label>
+                    <input type="number" id="multiplicateKey" name="multiplicateKey" min="1" list="validMultiplicativeKeys">
+                    <datalist id="validMultiplicativeKeys">
+                        <option value="1"></option>
+                        <option value="3"></option>
+                        <option value="5"></option>
+                        <option value="7"></option>
+                        <option value="9"></option>
+                        <option value="11"></option>
+                        <option value="15"></option>
+                        <option value="17"></option>
+                        <option value="19"></option>
+                        <option value="21"></option>
+                        <option value="23"></option>
+                        <option value="25"></option>
+                    </datalist>`;
                 break;
             default:
                 keyInputHTML = '';
@@ -87,17 +101,33 @@ document.addEventListener('DOMContentLoaded', function () {
                 key = generatedKey; // Store the key for display
             } else {
                 const decryptionKey = document.getElementById('garbageKey').value;
-                result = cipher.decrypt(text, decryptionKey);
+                result = cipher.decrypt(text, decryptionKey = 1);
             }
             break;
             }
+            case 'multiplicate': {
+                const offset = parseInt(document.getElementById('multiplicateKey').value);
+    
+                // Ensure the offset is coprime with 26
+                const coprimes = [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25];
+                if (!coprimes.includes(offset)) {
+                    displaySection.innerHTML = '<p style="color: red;">Error: Key must be coprime with 26. Choose from [1, 3, 5, 7, 9, 11, 15, 17, 19, 21, 23, 25]</p>';
+                    return;
+                }
+
+                const cipher = new Multiplicate(text, offset);
+                result = isEncrypt ? cipher.encrypt() : cipher.decrypt();
+                break;
+            }
+
         }
 
-         if (key) {
-            displaySection.innerHTML = `<strong>Result:</strong><p>${result}</p><strong>Key:</strong><p>${key}</p>`;
+        if (key) {
+            displaySection.innerHTML = `<p class="typewriter">${result}</p><strong>Key:</strong><p class="typewriter shrink-text">${key}</p>`;
         } else {
-        displaySection.innerHTML = `<strong>Result:</strong><p>${result}</p>`;
+            displaySection.innerHTML = `<p class="typewriter">${result}</p>`;
         }
+
 
     }
 
@@ -108,3 +138,38 @@ document.addEventListener('DOMContentLoaded', function () {
 // import { CeasarCipher } from './ciphers.js';
 
 // console.log(CeasarCipher);
+
+document.getElementById("save").addEventListener("click", function () {
+    const inputText = document.getElementById('inputText').value.trim(); // Trim to remove whitespace
+    const selectedCipher = document.getElementById('cipherSelect').value;
+    const method = document.querySelector('input[name="method"]:checked').value;
+    const displayText = document.querySelector('#displaySection p').innerText.trim(); // Trim to remove whitespace
+
+    if (inputText === "" || displayText === "") {
+        alert("Please input text and generate the output before saving.");
+        return; 
+    }
+
+    const data = {
+        plaintext: inputText,
+        cphier_method: selectedCipher,
+        cphier_text: displayText
+    };
+
+    fetch('/save', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        alert('Record saved successfully!');
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        alert('Error saving record!');
+    });
+});

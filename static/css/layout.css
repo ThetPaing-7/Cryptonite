@@ -1,0 +1,185 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --bg-color: white;
+    --nav-bg-color :#101218;
+    --nav-text-color: white;
+    --base-variant:white;
+    --primary-color:#3a435d;
+    --dropdown-bg-color:#101218;
+    --navTextHover:red;
+    --text-color:#101218;
+}
+
+.darkmode{
+    --bg-color: #101218;
+    --nav-bg-color : rgb(248, 240, 240);
+    --nav-text-color: #101218;
+    --base-variant:white;
+    --primary-color:#3a435d;
+    --dropdown-bg-color:white;
+    --navTextHover:red;
+    --text-color:white;
+}
+
+body{
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  animation: fadeEffect 0.4s ease;
+}
+
+
+/* Fade effect for smooth transitions */
+@keyframes fadeEffect {
+    0% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+/* Nav bar styling */
+.navbarContainer{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--nav-bg-color);
+    color: var(--nav-text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+
+}
+
+.leftside,
+.rightside{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.leftside div a{
+ text-decoration: none;
+ color: var(--nav-text-color);
+}
+
+.leftside div a:hover{
+ color: var(--navTextHover);
+}
+
+.leftside div,
+.rightside div{
+    margin: 3px 10px;
+}
+
+/* Drop down navigation */
+.dropdown ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+}
+
+.dropdown li{
+  list-style: none;
+  margin: 0;
+  padding: 0; 
+}
+
+.dropdown li a{
+  display: block;
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.leftside div .dropdown{
+  background: var(--dropdown-bg-color);
+  position: absolute;
+  z-index: 999;
+  display: none;
+  min-width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown li a:hover{
+  background-color: aquamarine;
+  color: white;
+}
+
+.leftside div:hover .dropdown{
+  display: block;
+}
+
+.leftside div .dropdown {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.leftside div:hover .dropdown {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Input text style */
+#sentence{
+ text-align: left;
+}
+
+#sentence::placeholder{
+  text-align: left;
+  margin: 5px;
+  padding: 1px;
+  vertical-align: top;
+}
+
+
+/* Start of the toogle bar */
+#theme-switch{
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: var(--base-variant);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.4s ease, transform 0.3s ease;
+
+}
+
+#theme-switch:hover {
+    transform: scale(1.1);
+}
+
+#theme-switch svg {
+    fill: var(--primary-color);
+    transition: fill 0.4s ease, opacity 0.4s ease;
+}
+
+#theme-switch svg:last-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child {
+    display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+    display: block;
+}

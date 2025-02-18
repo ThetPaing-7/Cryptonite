@@ -1,7 +1,7 @@
-import sqlite3
-from flask import Flask, flash, redirect, render_template, request, session, g, url_for
-from flask_session import Session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, g, jsonify
+import sqlite3 as sql
 from werkzeug.security import check_password_hash, generate_password_hash
+from flask_session import Session
 
 # Configure application
 app = Flask(__name__)
@@ -16,8 +16,8 @@ Session(app)
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-        db.row_factory = sqlite3.Row  # Return rows as dictionaries
+        db = g._database = sql.connect(DATABASE)
+        db.row_factory = sql.Row  # Return rows as dictionaries
     return db
 
 @app.teardown_appcontext
@@ -26,14 +26,89 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
+# Start page
 @app.route("/")
 def start():
     return render_template("startPage.html")
 
 
+@app.route('/save', methods=['POST'])
+def save_record():
+    data = request.get_json()
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO history (plaintext, cphier_method, cphier_text) VALUES (?, ?, ?)',
+                   (data['plaintext'], data['cphier_method'], data['cphier_text']))
+    db.commit()
+    return jsonify({'message': 'Record saved successfully!'}), 201
+
+# Track page (used for the index route)
+@app.route("/track")
+def track():
+    con = sql.connect(DATABASE)
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("SELECT * FROM history")
+    datas = cur.fetchall()  # Change 'data' to 'datas' to match the template
+    return render_template("track.html", datas=datas)  # Ensure 'datas' is passed
+
+
+@app.route("/add_user", methods=["POST", "GET"])
+def add_user():
+    if request.method == "POST":
+        text = request.form["text"]
+        method = request.form["method"]
+        chiper = request.form["chiper"]
+        
+        # Connect to the database and insert the data
+        con = sql.connect(DATABASE)
+        cur = con.cursor()
+        cur.execute("INSERT INTO history (plaintext, cphier_method, cphier_text) VALUES (?, ?, ?)", (text, method, chiper))
+        con.commit()
+        
+        # Show a success message and redirect to the main page
+        flash("User Added Successfully", "success")
+        return redirect(url_for("track"))
+    
+    return render_template("add_user.html")
+
+
+
+
+@app.route("/edit_user/<string:id>", methods=['POST', 'GET'])
+def edit_user(id):
+    if request.method == 'POST':
+        text = request.form['text']
+        method = request.form['method']
+        chiper = request.form['chiper']
+        con = sql.connect(DATABASE)
+        cur = con.cursor()
+        cur.execute("UPDATE history SET plaintext = ?, cphier_method = ?, cphier_text = ? WHERE id = ?", (text, method, chiper, id))
+        con.commit()
+        flash('User Updated', 'success')
+        return redirect(url_for("track"))
+    
+    con = sql.connect(DATABASE)
+    con.row_factory = sql.Row
+    cur = con.cursor()
+    cur.execute("SELECT * FROM history WHERE id = ?", (id,))
+    data = cur.fetchone()
+    return render_template("edit_user.html", datas=data)
+
+
+@app.route("/delete_user/<string:id>", methods=['GET'])
+def delete_user(id):
+    con = sql.connect(DATABASE)
+    cur = con.cursor()
+    cur.execute("DELETE FROM history WHERE id = ?", (id,))
+    con.commit()
+    flash('User Deleted', 'warning')
+    return redirect(url_for("track"))
+
+
+# Login route
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    """Log in the user."""
     session.clear()  # Clear existing session
 
     if request.method == "POST":
@@ -60,18 +135,18 @@ def login():
         flash("Login successful!", "success")
         return redirect(url_for("home"))
 
-    return render_template("home.html")
+    return render_template("login.html")
 
+# Logout route
 @app.route("/logout")
 def logout():
-    """Log the user out."""
     session.clear()
     flash("You have been logged out!", "info")
     return redirect(url_for("login"))
 
+# Signup route
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
-    """Register a new user."""
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -101,7 +176,7 @@ def signup():
 
     return render_template("login.html")
 
-
+# Other routes
 @app.route("/home")
 def home():
     return render_template("home.html")
@@ -126,9 +201,11 @@ def index_of_coincidence():
 def shift_tester():
     return render_template("shiftTester.html")
 
-# Error handler (for displaying apology messages)
+# Error handler
 def apology(message, code=400):
     return render_template("apology.html", message=message), code
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+

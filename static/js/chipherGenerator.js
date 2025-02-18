@@ -1,5 +1,5 @@
 export class CeasarCipher {
-    constructor(text, offset) {
+    constructor(text, offset = 1) {
         this.text = text;
         this.offset = offset;
     }
@@ -10,15 +10,15 @@ export class CeasarCipher {
         let word = this.text.split('');
         for (let i = 0; i < word.length; i++) {
             let charCode = word[i].charCodeAt(0);
-            let newCharCode; // Declare newCharCode here
+            let newCharCode;
 
             // If the cap letters
             if (charCode >= 65 && charCode <= 90) {
-                newCharCode = (((charCode - 65 + this.offset) % 26) + 65); 
+                newCharCode = (((charCode - 65 + this.offset) % 26) + 65);
             } else if (charCode >= 97 && charCode <= 122) {
-                newCharCode = (((charCode - 97 + this.offset) % 26) + 97); 
+                newCharCode = (((charCode - 97 + this.offset) % 26) + 97);
             } else {
-                newCharCode = charCode; 
+                newCharCode = charCode;
             }
 
             cipherText += String.fromCharCode(newCharCode);
@@ -27,33 +27,32 @@ export class CeasarCipher {
         return cipherText;
     }
 
+    decrypt() {
+        let plainText = '';
 
-    decrypt(){
-        let plainText = ""
+        let word = this.text.split('');
 
-        let word = this.text.split("")
-
-        // loop through the word subtract the key
-        for(let i = 0; i < word.length; i++){
-            let charCode = word[i].charCodeAt(0)
-            let newCharCode
+        // loop through the word and subtract the key
+        for (let i = 0; i < word.length; i++) {
+            let charCode = word[i].charCodeAt(0);
+            let newCharCode;
 
             // If the cap letters
             if (charCode >= 65 && charCode <= 90) {
-                newCharCode = (((charCode - 65 - this.offset) % 26) + 65); 
+                newCharCode = (((charCode - 65 - this.offset) + 26) % 26) + 65; 
             } else if (charCode >= 97 && charCode <= 122) {
-                newCharCode = (((charCode - 97 - this.offset) % 26) + 97); 
+                newCharCode = (((charCode - 97 - this.offset) + 26) % 26) + 97;
             } else {
-                newCharCode = charCode; 
+                newCharCode = charCode;
             }
 
             plainText += String.fromCharCode(newCharCode);
-
         }
 
-        return plainText
+        return plainText;
     }
 }
+
 
 
 // Ceasar
@@ -77,27 +76,17 @@ export class CeasarCipher {
 
 
 export class Binary {
-    constructor(text) {
-        this.text = text;
-    }
+  constructor(text) {
+    this.text = text;
+  }
 
-    encrypt() {
-        let binary = "";
-        for (let i = 0; i < this.text.length; i++) {
-            let bin = this.text.charCodeAt(i).toString(2).padStart(8, "0");
-            binary += bin + " ";
-        }
-        return binary.trim();
-    }
+  encrypt() {
+    return this.text.split("").map(char => char.charCodeAt(0).toString(2).padStart(8, "0")).join(" ");
+  }
 
-    decrypt(binary) {
-        let binaryArr = binary.split(" ");
-        let text = "";
-        for (let i = 0; i < binaryArr.length; i++) {
-            text += String.fromCharCode(parseInt(binaryArr[i], 2));
-        }
-        return text;
-    }
+  decrypt(binary) {
+    return binary.split(" ").map(byte => String.fromCharCode(parseInt(byte, 2))).join("");
+  }
 }
 
 export class Hexadecimal{
@@ -240,49 +229,24 @@ export class Decimal{
 
 // //Direct Encryption/Decryption
 // console.log("Directly encrypt and decrypt (Decimal):", new Decimal("Direct test").decrypt(new Decimal("Direct test").encrypt()));
-export class Bulb extends Binary {
-    constructor(text) {
-        super(text);
-    }
+export class Bulb {
+  constructor(text) {
+    this.text = text;
+  }
 
-    encrypt() {
-        let binary = super.encrypt();
-        let bulbs = "";
+  encrypt() {
+    return this.text.split("").map(char => char.charCodeAt(0).toString(2).padStart(8, "0").replace(/0/g, "⚫").replace(/1/g, "🟡")).join(" ");
+  }
 
-        let byte = binary.split(" ");
-        for (let i = 0; i < byte.length; i++) {
-            let bits = byte[i];
-            for (let j = 0; j < bits.length; j++) {
-                if (bits[j] == "1") {
-                    bulbs += "🟡";
-                } else if (bits[j] == "0") {
-                    bulbs += "⚫";
-                }
-            }
-            bulbs += " ";
-        }
-
-        return bulbs.trim();
-    }
-
-    decrypt(bulbs) {
-        let binary = "";
-        for (let i = 0; i < bulbs.length; i++) {
-            if (bulbs[i] === "🟡") {
-                binary += "1";
-            } else if (bulbs[i] === "⚫") {
-                binary += "0";
-            } else {
-                binary += " ";
-            }
-        }
-        return super.decrypt(binary.trim());
-    }
+  decrypt(bulbs) {
+    return bulbs.split(" ").map(byte => String.fromCharCode(parseInt(byte.replace(/⚫/g, "0").replace(/🟡/g, "1"), 2))).join("");
+  }
 }
 
 
+
 export class LengthFactorialEncryption {
-    constructor(text, padding) {
+    constructor(text, padding = 1) {
         this.text = text;
         this.padding = padding;
     }
@@ -360,14 +324,14 @@ export class Reverse {
         let chars = input.split('');
         let letters = [];
 
-        // Extract letters (ignoring spaces)
+        // Extract letters 
         for (let char of chars) {
             if (char !== ' ') {
                 letters.push(char);
             }
         }
 
-        // Reverse the letters array
+        // Reverse the letters 
         letters.reverse();
 
         let result = [];
@@ -386,67 +350,37 @@ export class Reverse {
     }
 }
 
+
 export class Multiplicate {
-    constructor(text, offset) {
-        this.text = text;
-        this.offset = offset;
+  constructor(text, offset = 1) {
+    if (this.gcd(offset, 26) !== 1) throw new Error("Offset must be coprime with 26");
+    this.text = text;
+    this.offset = offset;
+  }
 
-        // Find modular inverse of offset under modulo 26
-        this.inverseOffset = this.modInverse(offset, 26);
-        if (this.inverseOffset === -1) {
-            throw new Error("Offset must be coprime with 26 for decryption to work.");
-        }
+  encrypt() {
+    return this.text.replace(/[a-z]/gi, (char) => {
+      let base = char >= "a" ? 97 : 65;
+      return String.fromCharCode(((char.charCodeAt(0) - base) * this.offset % 26) + base);
+    });
+  }
+
+  decrypt() {
+    let modInverse = this.modInverse(this.offset, 26);
+    return this.text.replace(/[a-z]/gi, (char) => {
+      let base = char >= "a" ? 97 : 65;
+      return String.fromCharCode(((char.charCodeAt(0) - base) * modInverse % 26) + base);
+    });
+  }
+
+  gcd(a, b) {
+    return b === 0 ? a : this.gcd(b, a % b);
+  }
+
+  modInverse(a, m) {
+    for (let x = 1; x < m; x++) {
+      if ((a * x) % m === 1) return x;
     }
-
-    // Function to compute modular inverse using Extended Euclidean Algorithm
-    modInverse(a, m) {
-        for (let x = 1; x < m; x++) {
-            if ((a * x) % m === 1) {
-                return x;
-            }
-        }
-        return -1; // No inverse exists
-    }
-
-    encrypt() {
-        let cipherText = "";
-
-        for (let char of this.text) {
-            let charCode = char.charCodeAt(0);
-            let newCharCode;
-
-            if (charCode >= 65 && charCode <= 90) { // Uppercase
-                newCharCode = (((charCode - 65) * this.offset) % 26) + 65;
-            } else if (charCode >= 97 && charCode <= 122) { // Lowercase
-                newCharCode = (((charCode - 97) * this.offset) % 26) + 97;
-            } else {
-                newCharCode = charCode;
-            }
-
-            cipherText += String.fromCharCode(newCharCode);
-        }
-
-        return cipherText;
-    }
-
-    decrypt() {
-        let plainText = "";
-
-        for (let char of this.text) {
-            let charCode = char.charCodeAt(0);
-            let newCharCode;
-
-            if (charCode >= 65 && charCode <= 90) { // Uppercase
-                newCharCode = (((charCode - 65) * this.inverseOffset) % 26 + 26) % 26 + 65;
-            } else if (charCode >= 97 && charCode <= 122) { // Lowercase
-                newCharCode = (((charCode - 97) * this.inverseOffset) % 26 + 26) % 26 + 97;
-            } else {
-                newCharCode = charCode;
-            }
-
-            plainText += String.fromCharCode(newCharCode);
-        }
-
-        return plainText;
-    }
+    throw new Error("No modular inverse found");
+  }
 }

@@ -22,19 +22,21 @@
             <!--Method Section -->
             <div class="firstArea">
                 <label for="cipherSelecter" class="prompt">Choose a cipher method</label>
-                
-                <select name="cipherMethod" id="cipherSelect">
-                    <option value="">--Please choose an option--</option>
-                    <option value="decimal">Decimal</option>
-                    <option value="binary">Binary</option>
-                    <option value="hexadecimal">Hexadecimal</option>
-                    <option value="reverse">Reverse</option>
-                    <option value="caesar">Caesar</option>
-                    <option value="substitution">Substitution</option>
-                    <option value="bulb">Bulb</option>
-                    <option value="garbage">Garbage</option>
-                    <option value="multiplicate">Multiplicatin</option>
-                </select>
+
+                <div class="select-dropdown">
+                    <select name="cipherMethod" id="cipherSelect">
+                        <option value="">Please choose an option</option>
+                        <option value="decimal">Decimal</option>
+                        <option value="binary">Binary</option>
+                        <option value="hexadecimal">Hexadecimal</option>
+                        <option value="reverse">Reverse</option>
+                        <option value="caesar">Caesar</option>
+                        <option value="substitution">Substitution</option>
+                        <option value="bulb">Bulb</option>
+                        <option value="garbage">Garbage</option>
+                        <option value="multiplicate">Multiplicatin</option>
+                    </select>
+                </div>
 
             </div>
             <!-- Input Section -->
@@ -67,12 +69,15 @@
         </div>
         <!-- End of input section -->
 
-        <!-- Button area -->
-        <button id="transform">Transform</button>
+        <!-- Button area --> 
+         <div class="btnGp">
+                <button id="transform">Transform</button>
+                <button id="save">Add to the Record</button>
+         </div>
      
         <!-- Display section -->
         <div class="displaySection" id="displaySection">
-
+     
         </div>
 
     </div>

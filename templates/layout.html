@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- JS link -->
+    <title>Track</title>
 
-    <script src="{{ url_for('static', filename='js/jsfile.js') }}" defer></script> 
-       <!-- Css link -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
-    <!-- Document title -->
-    <title>Cryptonite: {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+  
+  </head>
+  <body>
+    <div class='container pt-3'>
 
-    <!-- Block for child specific css -->
-     {% block extar_css %}{% endblock %}
-
-     <!-- Block for child specific js -->
-      {% block extra_js %}{% endblock %}
-</head>
-<body>
-    <!-- Navigation bar -->
-     <div class="navbarContainer">
+      <div class="navbarContainer">
         <div class="leftside">
             <div><a href="/home">Home</a></div>
             <div><a href="/learn">Learn</a></div>
@@ -42,17 +33,16 @@
             </button>
         </div>
      </div>
-     <!-- Main -->
-      
-    {% with messages=get_flashed_messages(with_categories=true) %}
+      {% with messages=get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category,message in messages %}
             <div class='alert alert-{{category}}'>{{message}}</div>
           {% endfor %}
         {% endif %}
-    {% endwith %}
-
-    {% block main %}{% endblock %}
-     
-</body>
+      {% endwith %}
+      {% block body %}
+      
+      {% endblock %}
+    </div>
+  </body>
 </html>
