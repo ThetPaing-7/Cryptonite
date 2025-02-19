@@ -1,17 +1,17 @@
 {% extends "base.html" %}
 
 {% block title %}
-    Frequency Analysis
+    Bigram Analysis
 {% endblock %}
 
 <!-- Block for child specific css -->
  {% block extar_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/frequencyAnalysis.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/bigram.css') }}">
  {% endblock %}
 
 <!-- Block for child specific js -->
 {% block extra_js %}
-    <script src="{{ url_for('static', filename = 'js/frequencyAnalysis.js') }}" defer></script>
+    <script src="{{ url_for('static', filename = 'js/bigram.js') }}" defer></script>
 {% endblock %}
 
 {% block main %}
@@ -19,7 +19,7 @@
         <!-- Text input section -->
         <div class="inputSection">
             <!-- page header -->
-            <h2 class="header">Frequecny Analysis</h2>
+            <h2 class="header">Bigram Analysis</h2>
             <div class="input">
                 <label for="sentence">Enter text here:</label><br>
                 <input type="text" id="sentence" name="sentence" required>
@@ -28,24 +28,20 @@
                     <!-- Ask which option to select -->
                     <div>
                         <!-- Only letters -->
-                        <input type="radio" id="onlyletters" name="filterOption" value="onlyletters">
-                        <label for="onlyletters">Only A to Z</label>
+                        <input type="radio" id="onlyBigrams" name="filterOption" value="onlyBigrams">
+                        <label for="onlyBigrams">only Bigrams</label>
                     </div>
 
                     <!-- To include space -->
                     <div>
-                        <input type="radio" id="numbersOnly" name="filterOption" value="numbersOnly">
-                        <label for="numbersOnly">Only Digits</label>
+                        <input type="radio" id="bigramsAndDigits" name="filterOption" value="bigramsAndDigits">
+                        <label for="bigramsAndDigits">bigrams And Digits</label>
                     </div>
 
-                    <div>
-                        <input type="radio" id="numbersAndLetters" name="filterOption" value="numbersAndLetters">
-                        <label for="numbersAndLetters">Only Letters and Digit</label>
-                    </div>
             </div>
-            
+        
             <!-- Calculate frequecny button -->
-             <button id="frequecnybtn" class="frequecny-btn">Calculate Frequency</button>
+             <button id="bigrambtn" class="frequecny-btn">Calculate Frequency</button>
     
         </div>
 

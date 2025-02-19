@@ -5,9 +5,9 @@
 {% endblock %}
 
 <!-- Block for child specific css -->
- {% block extar_css %}
+{% block extar_css %}
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/tools.css') }}">
- {% endblock %}
+{% endblock %}
 
 <!-- Block for child specific js -->
 {% block extra_js %}
@@ -16,38 +16,67 @@
 
 {% block main %}
     <div class="toolsContainer">
-        <!-- Frequency Analysis -->
-        <div class="frequecnyAnalysis">
-            <a href="/frequencyAnalysis" target="_blank">
-                <img src="../static/images/Fa.gif" alt="Frequency  Analysis">
-                <h3>Frequency Analysis</h3>
-                <hr>
-                <p>Frequency analysis identifies patterns in letter frequencies within ciphertext to exploit known language characteristics, aiding in breaking substitution ciphers. It matches these frequencies to typical letter distributions of the target language. This method is less effective against modern ciphers that disguise such patterns.</p>
-            </a>
+        <!-- Card 1 -->
+        <div class="toolCard">
+            <img src="../static/images/Fa.gif" alt="Frequency Analysis">
+            <h3>Frequency Analysis</h3>
+            <hr>
+            <p>Frequency analysis identifies patterns in letter frequencies within ciphertext to exploit known language characteristics, aiding in breaking substitution ciphers.</p>
+            <div class="buttonContainer">
+                <a href="/frequencyAnalysis" target="_blank" class="toolButton">Use Tool</a>
+                <a href="/learn" target="_blank" class="learnButton">Learn More</a>
+            </div>
         </div>
 
-        <!-- Shift tester -->
-         <div class="shitTester">
-            <a href="/shiftTester" target="_blank">
-                <img src="../static/images/ST.gif" alt="Shift Tester">
-                <h3>Shift Tester</h3>
-                <hr>
-                <p>
-                    A shift tester systematically tests all possible shifts in a Caesar Cipher to reveal the plaintext. By automating brute force, it efficiently deciphers texts encoded with a fixed shift. This technique exploits the simplicity of the Caesar Cipher's structure.
-                </p>
-            </a>    
-         </div>
+        <!-- Card 2 -->
+        <div class="toolCard">
+            <img src="../static/images/ST.gif" alt="Shift Tester">
+            <h3>Shift Tester</h3>
+            <hr>
+            <p>A shift tester systematically tests all possible shifts in a Caesar Cipher to reveal the plaintext.</p>
+            <div class="buttonContainer">
+                <a href="/shiftTester" target="_blank" class="toolButton">Use Tool</a>
+                <a href="/learn" target="_blank" class="learnButton">Learn More</a>
+            </div>
+        </div>
 
-         <!-- Index of Coincidence -->
-         <div class="indexOfCoincidence">
-            <a href="/indexOfCoincidence" target="_blank">
-                <img src="../static/images/IC.gif" alt="indexOfCoincidence">
-                <h3>Index of Coincidence (IC)</h3>
-                <hr>
-                <p>
-                    The Index of Coincidence calculates how often letters in a ciphertext repeat, indicating whether the cipher is monoalphabetic or polyalphabetic. It helps detect the language or type of cipher used. IC is particularly effective for estimating key lengths in ciphers like the Vigenère cipher.
-                </p>
-            </a>
-         </div>
+        <!-- Card 3 -->
+        <div class="toolCard">
+            <img src="../static/images/IC.gif" alt="Index of Coincidence">
+            <h3>Index of Coincidence (IC)</h3>
+            <hr>
+            <p>The Index of Coincidence calculates how often letters in a ciphertext repeat, indicating whether the cipher is monoalphabetic or polyalphabetic.</p>
+            <div class="buttonContainer">
+                <a href="/indexOfCoincidence" target="_blank" class="toolButton">Use Tool</a>
+                <a href="/learn" target="_blank" class="learnButton">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="toolCard">
+            <img src="../static/images/Fa.gif" alt="Bigram">
+            <h3>Bigram Analysis</h3>
+            <hr>
+            <p>Bigram analysis examines pairs of adjacent letters to identify patterns and frequencies in the ciphertext.</p>
+            <div class="buttonContainer">
+                <a href="/bigram" target="_blank" class="toolButton">Use Tool</a>
+                <a href="/learn" target="_blank" class="learnButton">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="toolCard">
+            <img src="../static/images/Fa.gif" alt="Trigram">
+            <h3>Trigram Analysis</h3>
+            <hr>
+            <p>Trigram analysis examines triplets of adjacent letters to identify patterns and frequencies in the ciphertext.</p>
+            <div class="buttonContainer">
+                <a href="/trigram" target="_blank" class="toolButton">Use Tool</a>
+                <a href="/learn" target="_blank" class="learnButton">Learn More</a>
+            </div>
+        </div>
+
+        <!-- Card 6 to 10 (duplicate as needed) -->
+        <!-- Repeat the above card structure for 6 to 10 -->
     </div>
 {% endblock %}

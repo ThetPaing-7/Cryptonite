@@ -2,9 +2,18 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track</title>
+
+    <script src="{{ url_for('static', filename='js/layout.js') }}" defer></script> 
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/layout.css') }}">
+
+    <title>Cryptonite: {% block title %}{% endblock %}</title>
+
+     <!-- Block for child specific css -->
+     {% block extar_css %}{% endblock %}
+
+     <!-- Block for child specific js -->
+      {% block extra_js %}{% endblock %}
   
   </head>
   <body>

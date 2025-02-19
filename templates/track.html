@@ -1,9 +1,21 @@
 {% extends 'layout.html' %}
 
+{% block title %}
+    Track
+{% endblock %}
+
+{% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/track.css') }}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{{ url_for('static', filename='js/track.js') }}" type="module" defer></script>
+{% endblock %}
+
 {% block body %}
-  <h3 class='text-center text-muted mb-3'>Flask - SQLite CRUD Application</h3>
-  <p class='text-right'><a href='{{url_for("add_user")}}' class='btn btn-success '>+Add User</a></p>
-  <table class='table table-bordered'>
+  <h3>Flask - SQLite CRUD Application</h3>
+  <p><a href='{{url_for("add_user")}}'>+Add User</a></p>
+  <table>
     <thead>
       <th>SNo</th>
       <th>Text</th>
@@ -19,8 +31,8 @@
           <td>{{ row.plaintext }}</td>
           <td>{{ row.cphier_method }}</td>
           <td>{{ row.cphier_text }}</td>
-          <td><a href='{{url_for("edit_user",id=row.id)}}' class='btn btn-primary'>Edit</a></td>
-          <td><a href='{{url_for("delete_user",id=row.id)}}' class='btn btn-danger' onclick='return confirm("Are You Sure")'>Delete</a></td>
+          <td><a href='{{url_for("edit_user",id=row.id)}}' class="edit-link">Edit</a></td>
+          <td><a href='{{url_for("delete_user",id=row.id)}}' class="delete-link" onclick='return confirm("Are You Sure")'>Delete</a></td>
         </tr>
       {% endfor %}
     </tbody>

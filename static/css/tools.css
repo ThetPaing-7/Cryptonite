@@ -1,103 +1,135 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --bg-color: white;
-    --nav-bg-color : black;
+    --nav-bg-color: black;
     --nav-text-color: white;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:black;
-    --navTextHover:red;
-    --text-color:black;
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: black;
+    --navTextHover: red;
+    --text-color: black;
     --borderColor: black;
     --paratextcolor: black;
     --paratextHoveecolor: white;
     --cardColor: #F5F7F8;
     --cardHoverColor: #F2F9FF;
-    --box-shawdow-hover:#384B70;
-    --borderhover:#384B70;
+    --box-shawdow-hover: #384B70;
+    --borderhover: #384B70;
+    --button-bg-color: #3a435d;
+    --button-hover-bg-color: #384B70;
+    --button-text-color: white;
+    --button-hover-text-color: white;
 }
 
-.darkmode{
+.darkmode {
     --bg-color: #101218;
-    --nav-bg-color : rgb(248, 240, 240);
+    --nav-bg-color: rgb(248, 240, 240);
     --nav-text-color: #101218;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:white;
-    --navTextHover:red;
-    --text-color:white;
-    --borderColor: white; 
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: white;
+    --navTextHover: red;
+    --text-color: white;
+    --borderColor: white;
     --paratextcolor: #F5F7F8;
     --paratextHoveecolor: #F1D4E5;
     --cardColor: #213363;
     --cardHoverColor: #201658;
-    --box-shawdow-hover:#E966A0;
-    --borderhover:#E966A0;
+    --box-shawdow-hover: #E966A0;
+    --borderhover: #E966A0;
+    --button-bg-color: #E966A0;
+    --button-hover-bg-color: #D3547A;
+    --button-text-color: white;
+    --button-hover-text-color: white;
 }
 
-.toolsContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.toolsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
-.toolsContainer img,
-.toolsContainer svg{
-    width: 100px;
-    height: 100px;
-    display: block;
-    margin: 7px auto;
-}
-
-.toolsContainer a{
-    text-decoration: none;
-    
-}
-.toolsContainer div{
-    width: 20%;
-    height: 60%;
+.toolCard {
     border: 2px solid var(--borderColor);
     border-radius: 20px;
-    padding: 10px 20px;
+    padding: 20px;
     background-color: var(--cardColor);
-    box-shadow: 0px 0px 5px;
-}
-
-
-.toolsContainer div:hover{
-    border: 2px solid var(--borderhover);
-    border-radius: 20px;
-    padding: 10px 20px;
-    background-color: var(--cardHoverColor);
-    box-shadow: 0px 0px 7px var(--box-shawdow-hover);
-
-}
-
-
-div a{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.toolCard:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px var(--box-shawdow-hover);
+    border-color: var(--borderhover);
+    background-color: var(--cardHoverColor);
+}
+
+.toolCard img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.toolCard h3 {
+    font-size: 24px;
+    color: var(--text-color);
+    margin-bottom: 10px;
+}
+
+.toolCard p {
+    font-size: 14px;
     color: var(--paratextcolor);
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
-div h3{
-    font-weight: bolder;
-    font-size: 22px;
+.buttonContainer {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
 }
 
-div a p{
-    text-align: justify;
-    line-height: 1.2;
+.toolButton, .learnButton {
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.toolButton {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: 2px solid var(--button-bg-color);
+}
 
+.learnButton {
+    background-color: transparent;
+    color: var(--button-bg-color);
+    border: 2px solid var(--button-bg-color);
+}
 
+.toolButton:hover {
+    background-color: var(--button-hover-bg-color);
+    color: var(--button-hover-text-color);
+    border-color: var(--button-hover-bg-color);
+}
 
+.learnButton:hover {
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+}
