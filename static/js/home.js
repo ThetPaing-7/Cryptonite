@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 key = generatedKey; // Store the key for display
             } else {
                 const decryptionKey = document.getElementById('garbageKey').value;
-                result = cipher.decrypt(text, decryptionKey = 1);
+                result = cipher.decrypt(text, decryptionKey);
             }
             break;
             }
@@ -122,18 +122,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
         }
 
-        if (key) {
-            displaySection.innerHTML = `<p class="typewriter">${result}</p><strong>Key:</strong><p class="typewriter shrink-text">${key}</p>`;
-        } else {
-            displaySection.innerHTML = `<p class="typewriter">${result}</p>`;
-        }
+       function typeWriterEffect(element, text, speed = 30) {
+                let i = 0;
+                function type() {
+                    if (i < text.length) {
+                        element.innerHTML += text.charAt(i);
+                        i++;
+                        setTimeout(type, speed);
+                    }
+                }
+                element.innerHTML = ''; // Clear the element before starting the effect
+                type();
+            }
 
+            if (key) {
+                displaySection.innerHTML = `<p class="typewriter"></p><strong>Key:</strong><p class="typewriter shrink-text"></p>`;
+                const resultElement = displaySection.querySelector('.typewriter:first-of-type');
+                const keyElement = displaySection.querySelector('.shrink-text');
+                typeWriterEffect(resultElement, result);
+                typeWriterEffect(keyElement, key);
+            } else {
+                displaySection.innerHTML = `<p class="typewriter"></p>`;
+                const resultElement = displaySection.querySelector('.typewriter');
+                typeWriterEffect(resultElement, result);
+            }
 
     }
 
     transformBtn.addEventListener('click', processCipher);
 });
 
+
+
+document.getElementById('displaySection').addEventListener('click', () => {
+    const textToCopy = displaySection.innerText;
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('Copied!');
+    }).catch(() => {
+        alert('Failed to copy text.');
+    });
+});
 
 // import { CeasarCipher } from './ciphers.js';
 
@@ -173,3 +201,5 @@ document.getElementById("save").addEventListener("click", function () {
         alert('Error saving record!');
     });
 });
+
+

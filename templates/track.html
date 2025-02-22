@@ -13,8 +13,8 @@
 {% endblock %}
 
 {% block body %}
-  <h3>Flask - SQLite CRUD Application</h3>
-  <p><a href='{{url_for("add_user")}}'>+Add User</a></p>
+  <h3>Track down with the records</h3>
+   <p><a href='{{url_for("add_user")}}' class="add">Add Record📝</a></p>
   <table>
     <thead>
       <th>SNo</th>
@@ -37,4 +37,6 @@
       {% endfor %}
     </tbody>
   </table>
+ 
+
 {% endblock %}

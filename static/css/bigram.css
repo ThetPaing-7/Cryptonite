@@ -1,139 +1,186 @@
-:root{
+:root {
     --bg-color: white;
-    --nav-bg-color : black;
+    --nav-bg-color: black;
     --nav-text-color: white;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:black;
-    --navTextHover:red;
-    --border-color:#2c2c2c;
-    --btn-bg-color:#1a1a1a;
-    --btn-text-color:#fff;
-    --text-color:black;
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: black;
+    --navTextHover: red;
+    --border-color: #2c2c2c;
+    --btn-bg-color: #1a1a1a;
+    --btn-text-color: #fff;
+    --text-color: black;
+    --input-bg-color: #f9f9f9;
+    --input-border-color: #e0e0e0;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --input-placeholder-color: #999;
 }
 
-.darkmode{
+.darkmode {
     --bg-color: #101218;
-    --nav-bg-color : rgb(248, 240, 240);
+    --nav-bg-color: rgb(248, 240, 240);
     --nav-text-color: #101218;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:white;
-    --navTextHover:red;
-    --border-color:#9faee7;
-    --btn-bg-color:#5b3bb4;
-    --btn-text-color:#fff;
-    --text-color:white;
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: white;
+    --navTextHover: red;
+    --border-color: #9faee7;
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --text-color: white;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #444;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --input-placeholder-color: #777;
 }
 
-body{
-  color: var(--text-color);
+body {
+    color: var(--text-color);
 }
 
-.grid-container{
+.grid-container {
     display: grid;
     height: 100vh;
-    grid-template-rows: repeat(2,2.5fr);
-    grid-template-columns: 2fr 4fr ;
+    grid-template-rows: repeat(2, 2.5fr);
+    grid-template-columns: 2fr 4fr;
 }
 
-.inputSection{
+.inputSection {
+    width: 100%;
     grid-area: 1 / 1 / 3 / 2;
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: center;
     margin: 0 auto;
 }
 
-.inputSection .header{
+.inputSection .header {
     margin-bottom: 1rem;
+    text-align: center;
+    margin: 0px auto;
 }
 
-.optionGroup{
+.optionGroup {
     margin: 15px 0;
 }
 
 .analtzeopt div,
-.optionGroup div{
+.optionGroup div {
     margin: 5px 0;
 }
 
-.analtzeopt .analysisHeader{
+.analtzeopt .analysisHeader {
     font-weight: bold;
     font-size: 1.5rem;
 }
 
-.analtzeopt span{
+.analtzeopt span {
     font-weight: bold;
 }
 
 #sentence {
-  font-size: 20px;
-  width: 200px; 
-  height: 60px; 
-  padding-top: 5px; 
-  padding-left: 5px;
-  box-sizing: border-box; 
-  text-align: left; 
+    font-size: 1rem;
+    height: 60px;
+    padding: 12px;
+    box-sizing: border-box;
+    text-align: left;
 }
 
 #sentence::placeholder {
-  text-align: left; 
-  color: gray; 
+    text-align: left;
+    color: var(--input-placeholder-color);
 }
 
-
-/* Calcute button */
 .frequecny-btn {
-  margin: 7px 0;
-  padding: 10px 20px;
-  border: 2px solid var(--border-color);
-  background-color: var(--btn-bg-color);
-  color: var(--btn-text-color);
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: all 0.4s ease;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  font-weight: bold;
-  width: 200px;
-  height: 50px;
-  font-size: 15px;
+    margin: 7px 0;
+    padding: 10px 20px;
+    border: 2px solid var(--border-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
 }
 
 .frequecny-btn::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  transform: scale(0);
-  transition: transform 0.5s ease;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
 }
 
 .frequecny-btn:hover::after {
-  transform: scale(4);
+    transform: scale(4);
 }
 
 .frequecny-btn:hover {
-  border-color: #666666;
-  background: #292929;
+    border-color: #666666;
+    background: #292929;
 }
 
-
-.barchart{
+.barchart {
     grid-area: 1 / 2 / 2 / 3;
 }
 
-.engBarchart{
+.engBarchart {
     grid-area: 2 / 2 / 3 / 3;
+}
+
+.input {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.input label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    display: block;
+}
+
+.input input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input input[type="text"]:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--input-focus-shadow);
+    background-color: var(--bg-color);
+}
+
+.input input[type="text"]::placeholder {
+    color: var(--input-placeholder-color);
+    font-style: italic;
 }

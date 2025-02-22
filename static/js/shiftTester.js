@@ -67,7 +67,7 @@ document.getElementById("shiftTesterbtn").addEventListener("click", () => {
 
         let num = document.createElement("div");
         num.classList.add("num");
-        num.textContent = index + 1;
+        num.textContent = 27 - (index + 1) ;
 
         let result = document.createElement("div");
         result.classList.add("result");

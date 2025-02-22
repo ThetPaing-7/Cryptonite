@@ -1,61 +1,71 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root{
+:root {
     --bg-color: white;
-    --nav-bg-color :#101218;
+    --nav-bg-color: #101218;
     --nav-text-color: white;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:#101218;
-    --btn-bg-color:#5b3bb4;
-    --btn-text-color:#fff;
-    --navTextHover:red;
-    --text-color:#101218;
-    --drop--hover-color:rgb(182, 219, 255);
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: #101218;
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --navTextHover: red;
+    --text-color: #101218;
+    --drop-hover-color: rgb(182, 219, 255);
+    --input-bg-color: #f9f9f9;
+    --input-border-color: #e0e0e0;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --input-placeholder-color: #999;
 }
 
-.darkmode{
+.darkmode {
     --bg-color: #101218;
-    --nav-bg-color : rgb(248, 240, 240);
+    --nav-bg-color: rgb(248, 240, 240);
     --nav-text-color: #101218;
-    --base-variant:white;
-    --primary-color:#3a435d;
-    --dropdown-bg-color:white;
-    --navTextHover:red;
-    --text-color:white;
-    --drop--hover-color:rgb(182, 219, 255);
-    --btn-bg-color:#5b3bb4;
-    --btn-text-color:#fff;
+    --base-variant: white;
+    --primary-color: #3a435d;
+    --dropdown-bg-color: white;
+    --navTextHover: red;
+    --text-color: white;
+    --drop-hover-color: rgb(182, 219, 255);
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #444;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --input-placeholder-color: #777;
 }
 
-body{
+body {
     font-family: 'Orbitron', sans-serif;
 }
 
-.container{
+.container {
     display: grid;
     height: 100vh;
     grid-template-rows: 0.5fr 2fr 0.5fr 4fr;
     grid-template-columns: 2fr 2fr 2fr;
 }
 
-.header{
+.header {
     grid-area: 1 / 1 / 2 / 4;
 }
 
-.inputSection{
-    grid-area: 2 / 1 / 3 / 2 ;
+.inputSection {
+    grid-area: 2 / 1 / 3 / 2;
     display: grid;
     width: 100vw;
     grid-template-rows: 2fr 2fr;
     grid-template-columns: 1.5fr 3fr 1.5fr;
 }
 
-.firstArea{
+.firstArea {
     grid-area: 1/1/3/2;
     display: flex;
     flex-direction: column;
@@ -65,33 +75,54 @@ body{
     gap: 10px;
 }
 
-.secondArea{
-    grid-area: 1/2/3/3 ;
+.secondArea {
+    grid-area: 1/2/3/3;
     display: flex;
     flex-direction: column;
     padding: 5px 15px;
 }
 
-.prompt{
+.prompt {
     text-align: center;
+    color: var(--text-color);
 }
 
-#inputText{
+#inputText {
     height: 80%;
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border: 2px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.thirdArea{
+#inputText:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--input-focus-shadow);
+    background-color: var(--bg-color);
+}
+
+#inputText::placeholder {
+    color: var(--input-placeholder-color);
+    font-style: italic;
+}
+
+.thirdArea {
     grid-area: 1/3/3/4;
     display: grid;
     grid-template-rows: 1fr 1fr;
 }
 
-.keysgp{
+.keysgp {
     grid-area: 1/1/2/2;
 }
 
-
-.conversionMethod{
+.conversionMethod {
     grid-area: 2/1/3/2;
     display: flex;
     flex-direction: column;
@@ -99,72 +130,68 @@ body{
     margin: 5px 10px;
 }
 
-.btnGp{
-     grid-area: 3 / 1 / 4 / 2;
-     margin: 5px auto;
+.btnGp {
+    grid-area: 3 / 1 / 4 / 2;
+    margin: 5px auto;
 }
 
-button{
-  margin: 0 auto;
-  padding: 10px 20px;
-  border: 2px solid var(--border-color);
-  background-color: var(--btn-bg-color);
-  color: var(--btn-text-color);
-  font-size: 1.2rem;
-  cursor: pointer;
-  border-radius: 30px;
-  transition: all 0.4s ease;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  font-weight: bold;
-  width: 200px;
-  height: 50px;
-  font-size: 15px;
+button {
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 2px solid var(--input-border-color);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 30px;
+    transition: all 0.4s ease;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+    font-weight: bold;
+    width: 200px;
+    height: 50px;
+    font-size: 15px;
 }
 
-button::after{
-     content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.25) 0%,
-    rgba(255, 255, 255, 0) 70%
-  );
-  transform: scale(0);
-  transition: transform 0.5s ease;
+button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(255, 255, 255, 0) 70%
+    );
+    transform: scale(0);
+    transition: transform 0.5s ease;
 }
-
 
 button:hover::after {
-  transform: scale(4);
+    transform: scale(4);
 }
 
 button:hover {
-  border-color: #666666;
-  background: #292929;
+    border-color: #666666;
+    background: #292929;
 }
 
-
-h1{
+h1 {
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
-    color: rgb(138, 146, 146); /* Cyan glow */
+    color: rgb(138, 146, 146);
 }
-
 
 @keyframes glow {
-            0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #00ffff; }
-            100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00ffff; }
+    0% { text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #00ffff; }
+    100% { text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff, 0 0 80px #00ffff; }
 }
 
-
-.keysgp{
+.keysgp {
     display: flex;
     align-items: start;
     justify-content: center;
@@ -174,79 +201,139 @@ h1{
 .keysgp label {
     margin-bottom: 5px;
     font-weight: bold;
+    color: var(--text-color);
 }
 
 .keysgp input {
     width: 60%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border-color);
     border-radius: 4px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
 }
 
-.displaySection{
+.displaySection {
     grid-area: 4/1/5/2;
-    background-color: rgb(72, 36, 36);
 }
 
-
-
-/* Dropdown styling */
 .select-dropdown,
 .select-dropdown * {
-  margin: 0;
-  padding: 0;
-  position: relative;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    box-sizing: border-box;
 }
+
 .select-dropdown {
-  position: relative;
-  background-color: #E6E6E6;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
+    position: relative;
+    background-color: var(--input-bg-color);
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--input-border-color); /* Add border for better visibility */
 }
+
 .select-dropdown select {
-  font-size: 1rem;
-  font-weight: normal;
-  max-width: 100%;
-  padding: 8px 24px 8px 10px;
-  border: none;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  transition: color 0.3s ease;
+    font-size: 1rem;
+    font-weight: normal;
+    max-width: 100%;
+    padding: 8px 24px 8px 10px;
+    border: none;
+    background-color: transparent;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    transition: color 0.3s ease;
+    color: var(--text-color);
+    width: 100%; /* Ensure the select fills the container */
 }
+
 .select-dropdown select:active, .select-dropdown select:focus {
-  outline: none;
-  box-shadow: none;
+    outline: none;
+    box-shadow: none;
 }
+
 .select-dropdown:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 8px;
-  width: 0;
-  height: 0;
-  margin-top: -2px;
-  border-top: 5px solid #aaa;
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  transition: border-color 0.3s ease;
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    width: 0;
+    height: 0;
+    margin-top: -2px;
+    border-top: 5px solid var(--text-color); /* Use text color for the arrow */
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    transition: border-color 0.3s ease;
 }
 
 .select-dropdown:hover {
-  background-color: #D6D6D6;
+    background-color: var(--drop-hover-color);
 }
 
-.select-dropdown:hover option{
-  color: #333;
+.select-dropdown:hover option {
+    color: var(--text-color);
+    background-color: var(--input-bg-color); /* Ensure options match the dropdown background */
 }
 
 .select-dropdown:hover:after {
-  border-top-color: #333;
+    border-top-color: var(--text-color); /* Ensure arrow color matches the text color */
 }
 
 .select-dropdown:focus-within {
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for dropdown options */
+.select-dropdown option {
+    background-color: var(--input-bg-color); /* Match dropdown background */
+    color: var(--text-color); /* Match text color */
+}
+
+.displaySection {
+    color: #301E67;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: 'Arial', sans-serif;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow-x: hidden;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.displaySection:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.typewriter {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    white-space: pre-wrap;
+    overflow: hidden;
+    border-right: 2px solid #333;
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+.shrink-text {
+    font-size: 1rem;
+    color: rgba(51, 51, 51, 0.8);
+}
+
+strong {
+    color: #ff5722;
+    font-weight: bold;
+}
+
+@keyframes blink-caret {
+    from, to {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #333;
+    }
 }

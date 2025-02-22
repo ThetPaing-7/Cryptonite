@@ -1,0 +1,90 @@
+:root {
+    --bg-color: white;
+    --text-color: black;
+    --input-bg-color: #f9f9f9;
+    --input-border-color: #e0e0e0;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --btn-hover-color: #4a2f9a;
+}
+
+.darkmode {
+    --bg-color: #101218;
+    --text-color: white;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #444;
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --btn-hover-color: #4a2f9a;
+}
+
+
+/* Modern styling for the add user form */
+.add-user-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.add-user-container h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+.add-user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 2px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--input-focus-shadow);
+    background-color: var(--bg-color);
+}
+
+.submit-btn {
+    padding: 12px 24px;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--btn-hover-color);
+}

@@ -19,16 +19,13 @@ themeSwitch.addEventListener("click",()=>{
 })
 
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener('DOMContentLoaded', function () {
+    // Auto-close flash messages after 5 seconds
     setTimeout(function () {
-        let flashMessages = document.querySelectorAll(".flash-message");
+        let flashMessages = document.querySelectorAll('.alert');
         flashMessages.forEach(msg => {
-            msg.style.opacity = "0";
-            setTimeout(() => msg.remove(), 500);
+            msg.style.opacity = '0';
+            setTimeout(() => msg.remove(), 500); // Fade out and remove
         });
-    }, 5000);
+    }, 5000); // 5 seconds
 });
-
-
-
-

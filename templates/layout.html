@@ -14,8 +14,31 @@
 
      <!-- Block for child specific js -->
       {% block extra_js %}{% endblock %}
+
+      <style>
+    .alert {
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid transparent;
+      border-radius: 4px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      transition: opacity 0.5s ease-out; /* Optional: Smooth fade-out */
+    }
+    .alert-success {
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+    }
+    .alert-warning {
+      color: #856404;
+      background-color: #fff3cd;
+      border-color: #ffeeba;
+    }
+  </style>
   
   </head>
+
   <body>
     <div class='container pt-3'>
 
@@ -42,10 +65,11 @@
             </button>
         </div>
      </div>
+     
       {% with messages=get_flashed_messages(with_categories=true) %}
         {% if messages %}
           {% for category,message in messages %}
-            <div class='alert alert-{{category}}'>{{message}}</div>
+            <div class='alert alert-{{category}}' id="flash-message">{{message}}</div>
           {% endfor %}
         {% endif %}
       {% endwith %}
@@ -53,5 +77,6 @@
       
       {% endblock %}
     </div>
+
   </body>
 </html>

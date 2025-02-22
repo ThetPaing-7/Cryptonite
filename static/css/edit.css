@@ -1,0 +1,93 @@
+:root {
+    --bg-color: white;
+    --text-color: black;
+    --input-bg-color: #f9f9f9;
+    --input-border-color: #e0e0e0;
+    --input-focus-border-color: #007bff;
+    --input-focus-shadow: rgba(0, 123, 255, 0.3);
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --btn-hover-color: #4a2f9a;
+    --form-border-color: #ccc;
+    --form-label-color: #555;
+    --form-shadow: rgba(0, 0, 0, 0.1);
+    --form-heading-color: #333;
+}
+
+.darkmode {
+    --bg-color: #101218;
+    --text-color: white;
+    --input-bg-color: #2d2d2d;
+    --input-border-color: #444;
+    --btn-bg-color: #5b3bb4;
+    --btn-text-color: #fff;
+    --btn-hover-color: #4a2f9a;
+    --form-border-color: #666;
+    --form-label-color: #ddd;
+    --form-shadow: rgba(255, 255, 255, 0.1);
+    --form-heading-color: #f5f5f5;
+}
+
+/* Custom CSS for the edit form */
+.edit-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--form-shadow);
+}
+
+.edit-container h3 {
+    text-align: center;
+    color: var(--form-heading-color);
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--form-label-color);
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--form-border-color);
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: var(--input-focus-border-color);
+    outline: none;
+    box-shadow: 0 0 8px var(--input-focus-shadow);
+}
+
+.submit-btn {
+    padding: 10px 20px;
+    background-color: var(--btn-bg-color);
+    color: var(--btn-text-color);
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: var(--btn-hover-color);
+}

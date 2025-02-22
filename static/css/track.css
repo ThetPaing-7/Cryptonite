@@ -5,9 +5,9 @@
 }
 
 :root{
-    --bg-color: white;
+    --bg-color: #F9FAFB;
     --nav-bg-color :#101218;
-    --nav-text-color: white;
+    --nav-text-color: #f0f6f6;
     --base-variant:white;
     --primary-color:#3a435d;
     --dropdown-bg-color:#101218;
@@ -219,13 +219,15 @@ body{
 
   /* Table Styling */
   table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin: 20px 0;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease;
+    margin: 10px auto;
+    box-shadow: 0px 0px 5px;
   }
 
   table thead th {
@@ -288,3 +290,30 @@ body{
     color: var(--navTextHover);
     font-weight: bold;
   }
+
+  h3{
+    text-align: center;
+    margin: 3px auto;
+    font-size: 1.5rem;
+  }
+
+  p{
+    width: 95%;
+    text-align: right;
+    padding: 5px; 
+}
+
+
+.add{
+  padding: 7px 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: var(--base-variant);
+}
+
+.add:hover{
+  background-color: #3a86ff;
+  color: var(--base-variant);
+
+}
