@@ -34,15 +34,26 @@ function renderChart(containerId, title, dataPoints) {
 
 
 const englishFrequencies = [
-  { label: "A", y: 8.50 }, { label: "B", y: 2.07 }, { label: "C", y: 4.54 },
-  { label: "D", y: 3.38 }, { label: "E", y: 11.16 }, { label: "F", y: 1.81 },
-  { label: "G", y: 2.47 }, { label: "H", y: 3.00 }, { label: "I", y: 7.54 },
-  { label: "J", y: 0.20 }, { label: "K", y: 1.10 }, { label: "L", y: 5.49 },
-  { label: "M", y: 3.01 }, { label: "N", y: 6.65 }, { label: "O", y: 7.16 },
-  { label: "P", y: 3.17 }, { label: "Q", y: 0.20 }, { label: "R", y: 7.58 },
-  { label: "S", y: 5.74 }, { label: "T", y: 6.95 }, { label: "U", y: 3.63 },
-  { label: "V", y: 1.01 }, { label: "W", y: 1.29 }, { label: "X", y: 0.29 },
-  { label: "Y", y: 1.78 }, { label: "Z", y: 0.27 },
+  { label: "TH", y: 3.88 }, 
+  { label: "HE", y: 3.68 }, 
+  { label: "IN", y: 2.28 }, 
+  { label: "ER", y: 2.18 }, 
+  { label: "AN", y: 2.14 }, 
+  { label: "RE", y: 1.75 }, 
+  { label: "ND", y: 1.57 }, 
+  { label: "ON", y: 1.42 }, 
+  { label: "EN", y: 1.38 }, 
+  { label: "AT", y: 1.34 }, 
+  { label: "OU", y: 1.29 }, 
+  { label: "ED", y: 1.28 }, 
+  { label: "HA", y: 1.27 }, 
+  { label: "TO", y: 1.17 }, 
+  { label: "OR", y: 1.15 }, 
+  { label: "IT", y: 1.13 }, 
+  { label: "IS", y: 1.11 }, 
+  { label: "HI", y: 1.09 }, 
+  { label: "ES", y: 1.09 }, 
+  { label: "NG", y: 1.05 }, 
 ];
 
 class BigramAnalysis {

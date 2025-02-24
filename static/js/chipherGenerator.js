@@ -384,3 +384,61 @@ export class Multiplicate {
     throw new Error("No modular inverse found");
   }
 }
+
+
+export class SubstitutionCipher {
+    constructor(text, key) {
+        this.text = text;
+        this.key = key;
+    }
+
+    encrypt() {
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        const key = this.key.toLowerCase();
+        let cipherText = '';
+
+        for (let char of this.text) {
+            if (char === ' ') {
+                cipherText += ' ';
+                continue;
+            }
+
+            const isUpperCase = char === char.toUpperCase();
+            const index = alphabet.indexOf(char.toLowerCase());
+
+            if (index === -1) {
+                cipherText += char; // Non-alphabetic characters remain unchanged
+            } else {
+                const encryptedChar = key[index];
+                cipherText += isUpperCase ? encryptedChar.toUpperCase() : encryptedChar;
+            }
+        }
+
+        return cipherText;
+    }
+
+    decrypt() {
+        const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+        const key = this.key.toLowerCase();
+        let plainText = '';
+
+        for (let char of this.text) {
+            if (char === ' ') {
+                plainText += ' ';
+                continue;
+            }
+
+            const isUpperCase = char === char.toUpperCase();
+            const index = key.indexOf(char.toLowerCase());
+
+            if (index === -1) {
+                plainText += char; // Non-alphabetic characters remain unchanged
+            } else {
+                const decryptedChar = alphabet[index];
+                plainText += isUpperCase ? decryptedChar.toUpperCase() : decryptedChar;
+            }
+        }
+
+        return plainText;
+    }
+}

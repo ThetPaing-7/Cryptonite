@@ -60,16 +60,28 @@ function renderChart(containerId, title, dataPoints) {
 
 
 const englishFrequencies = [
-  { label: "A", y: 8.50 }, { label: "B", y: 2.07 }, { label: "C", y: 4.54 },
-  { label: "D", y: 3.38 }, { label: "E", y: 11.16 }, { label: "F", y: 1.81 },
-  { label: "G", y: 2.47 }, { label: "H", y: 3.00 }, { label: "I", y: 7.54 },
-  { label: "J", y: 0.20 }, { label: "K", y: 1.10 }, { label: "L", y: 5.49 },
-  { label: "M", y: 3.01 }, { label: "N", y: 6.65 }, { label: "O", y: 7.16 },
-  { label: "P", y: 3.17 }, { label: "Q", y: 0.20 }, { label: "R", y: 7.58 },
-  { label: "S", y: 5.74 }, { label: "T", y: 6.95 }, { label: "U", y: 3.63 },
-  { label: "V", y: 1.01 }, { label: "W", y: 1.29 }, { label: "X", y: 0.29 },
-  { label: "Y", y: 1.78 }, { label: "Z", y: 0.27 },
+  { label: "THE", y: 3.51 },
+  { label: "AND", y: 1.59 },
+  { label: "ING", y: 1.15 },
+  { label: "HER", y: 0.82 },
+  { label: "HAT", y: 0.65 },
+  { label: "HIS", y: 0.60 },
+  { label: "THA", y: 0.59 },
+  { label: "ERE", y: 0.56 },
+  { label: "FOR", y: 0.56 },
+  { label: "ENT", y: 0.53 },
+  { label: "ION", y: 0.51 },
+  { label: "TER", y: 0.46 },
+  { label: "WAS", y: 0.46 },
+  { label: "YOU", y: 0.44 },
+  { label: "ITH", y: 0.43 },
+  { label: "VER", y: 0.43 },
+  { label: "ALL", y: 0.42 },
+  { label: "WIT", y: 0.40 },
+  { label: "THI", y: 0.39 },
+  { label: "TIO", y: 0.38 },
 ];
+
 
 document.getElementById("trigramBtn").addEventListener("click", function () {
   const inputText = document.getElementById("sentence").value.trim();

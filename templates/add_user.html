@@ -10,7 +10,7 @@
 
 {% block body %}
   <div class="add-user-container">
-    <h3>Add User</h3>
+    <h3>Add New record</h3>
     <hr>
     <form method="POST" action="{{ url_for('add_user') }}" class="add-user-form">
       <div class="form-group">
@@ -18,8 +18,20 @@
         <input type="text" id="text" name="text" required class="form-input">
       </div>
       <div class="form-group">
-        <label for="method">Method</label>
-        <input type="text" id="method" name="method" required class="form-input">
+         <div class="select-dropdown">
+                    <select name="method" id="method">
+                        <option value="">Please choose an option</option>
+                        <option value="decimal">Decimal</option>
+                        <option value="binary">Binary</option>
+                        <option value="hexadecimal">Hexadecimal</option>
+                        <option value="reverse">Reverse</option>
+                        <option value="caesar">Caesar</option>
+                        <option value="substitution">Substitution</option>
+                        <option value="bulb">Bulb</option>
+                        <option value="garbage">Garbage</option>
+                        <option value="multiplicate">Multiplicatin</option>
+                    </select>
+                </div>
       </div>
       <div class="form-group">
         <label for="chiper">Chiper</label>

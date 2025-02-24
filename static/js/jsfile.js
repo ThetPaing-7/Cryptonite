@@ -21,16 +21,18 @@ themeSwitch.addEventListener("click",()=>{
 
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Select all alert elements
-    const alerts = document.querySelectorAll('.alert');
+function hideFlashMessage() {
+  const flashMessage = document.getElementById("flash-message");
+  console.log("Flash message element:", flashMessage); // Debugging
+  if (flashMessage) {
+    console.log("Hiding flash message..."); // Debugging
+    setTimeout(() => {
+      flashMessage.style.opacity = "0"; // Fade out
+      setTimeout(() => {
+        flashMessage.style.display = "none"; // Remove from DOM
+      }, 500); // Wait for the fade-out to finish
+    }, 3000); // 3000 milliseconds = 3 seconds
+  }
+}
 
-    alerts.forEach(alert => {
-        // Set a timeout to fade out the alert after 2 seconds
-        setTimeout(() => {
-            alert.style.opacity = '0';
-            // Remove the alert from the DOM after the fade-out transition
-            setTimeout(() => alert.remove(), 500); // 500ms matches the CSS transition duration
-        }, 2000); // 2000ms = 2 seconds
-    });
-});
+window.addEventListener("load", hideFlashMessage);

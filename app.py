@@ -3,6 +3,7 @@ import sqlite3 as sql
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_session import Session
 
+
 # Configure application
 app = Flask(__name__)
 DATABASE = 'storage.db'
@@ -30,6 +31,10 @@ def close_connection(exception):
 @app.route("/")
 def start():
     return render_template("startPage.html")
+
+@app.route("/join")
+def explore():
+    return render_template("login.html")
 
 
 @app.route('/save', methods=['POST'])
@@ -67,7 +72,7 @@ def add_user():
         con.commit()
         
         # Show a success message and redirect to the main page
-        flash("User Added Successfully", "success")
+        flash("Record Added Successfully", "success")
         return redirect(url_for("track"))
     
     return render_template("add_user.html")
@@ -105,6 +110,15 @@ def delete_user(id):
     flash('User Deleted', 'warning')
     return redirect(url_for("track"))
 
+def get_meme_text(error_code):
+    memes = {
+        "invalid_username": "🚫 Username not found! Maybe try 'admin'?",
+        "invalid_password": "🔒 Wrong password! Are you sure it's not 'password123'?",
+        "username_exists": "😅 That username is already taken! Try 'CoolUser2025'?",
+        "passwords_mismatch": "🤦‍♂️ Oops! Your passwords don’t match!",
+        "fields_required": "⚠️ Please fill in all fields before submitting!"
+    }
+    return memes.get(error_code, "❌ Something went wrong! Try again later.")
 
 # Login route
 @app.route("/login", methods=["GET", "POST"])
@@ -116,23 +130,28 @@ def login():
         password = request.form.get("password")
 
         if not username or not password:
-            flash("Username and password are required!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="fields_required", 
+                                   error_message="Username and password are required!", 
+                                   meme_text=get_meme_text("fields_required"))
 
         db = get_db()
         user = db.execute("SELECT * FROM users WHERE username = ?", (username,)).fetchone()
 
         if user is None:
-            flash("Invalid username!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="invalid_username", 
+                                   error_message="Invalid username!", 
+                                   meme_text=get_meme_text("invalid_username"))
 
         if not check_password_hash(user["hash"], password):
-            flash("Invalid password!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="invalid_password", 
+                                   error_message="Invalid password!", 
+                                   meme_text=get_meme_text("invalid_password"))
 
         # Store user in session
         session["user_id"] = user["id"]
-        flash("Login successful!", "success")
         return redirect(url_for("home"))
 
     return render_template("login.html")
@@ -141,8 +160,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.clear()
-    flash("You have been logged out!", "info")
-    return redirect(url_for("login"))
+    return redirect(url_for("start"))
 
 # Signup route
 @app.route("/signup", methods=["GET", "POST"])
@@ -153,25 +171,30 @@ def signup():
         confirmation = request.form.get("confirmation")
 
         if not username or not password or not confirmation:
-            flash("All fields are required!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="fields_required", 
+                                   error_message="All fields are required!", 
+                                   meme_text=get_meme_text("fields_required"))
 
         if password != confirmation:
-            flash("Passwords do not match!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="passwords_mismatch", 
+                                   error_message="Passwords do not match!", 
+                                   meme_text=get_meme_text("passwords_mismatch"))
 
         db = get_db()
         existing_user = db.execute("SELECT id FROM users WHERE username = ?", (username,)).fetchone()
 
         if existing_user:
-            flash("Username already exists!", "error")
-            return redirect(url_for("login"))
+            return render_template("error.html", 
+                                   error_code="username_exists", 
+                                   error_message="Username already exists!", 
+                                   meme_text=get_meme_text("username_exists"))
 
         hash_password = generate_password_hash(password)
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", (username, hash_password))
         db.commit()
 
-        flash("Registration successful! You can now log in.", "success")
         return redirect(url_for("login"))
 
     return render_template("login.html")
@@ -179,6 +202,10 @@ def signup():
 # Other routes
 @app.route("/home")
 def home():
+    return render_template("home.html")
+
+@app.route("/logo")
+def logo():
     return render_template("home.html")
 
 @app.route("/learn")

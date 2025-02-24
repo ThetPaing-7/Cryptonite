@@ -19,13 +19,15 @@ themeSwitch.addEventListener("click",()=>{
 })
 
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Auto-close flash messages after 5 seconds
-    setTimeout(function () {
-        let flashMessages = document.querySelectorAll('.alert');
-        flashMessages.forEach(msg => {
-            msg.style.opacity = '0';
-            setTimeout(() => msg.remove(), 500); // Fade out and remove
-        });
-    }, 5000); // 5 seconds
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to hide flash messages after 5 seconds
+    const flashMessage = document.getElementById('flash-message');
+    if (flashMessage) {
+        setTimeout(() => {
+            flashMessage.style.opacity = '0';
+            setTimeout(() => {
+                flashMessage.style.display = 'none';
+            }, 500); // Wait for the fade-out transition to complete
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
 });

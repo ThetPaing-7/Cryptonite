@@ -88,3 +88,57 @@
 .submit-btn:hover {
     background-color: var(--btn-hover-color);
 }
+
+/* Basic reset for the dropdown */
+.select-dropdown {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Adjust as needed */
+    margin: 0 auto;
+}
+
+/* Style the select element */
+.select-dropdown select {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    appearance: none; /* Remove default arrow */
+    -webkit-appearance: none; /* Remove default arrow for Safari */
+    -moz-appearance: none; /* Remove default arrow for Firefox */
+    cursor: pointer;
+}
+
+/* Custom dropdown arrow */
+.select-dropdown::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #666;
+    font-size: 12px;
+}
+
+/* Hover and focus states */
+.select-dropdown select:hover,
+.select-dropdown select:focus {
+    border-color: #888;
+    outline: none;
+}
+
+/* Style the options */
+.select-dropdown select option {
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+}
+
+/* Style for when the dropdown is open */
+.select-dropdown select:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

@@ -1,80 +1,75 @@
 {% extends "index.html" %}
 
 {% block title %}
-    Welcome
+    Welcome to Cryptonite
 {% endblock %}
 
-<!-- Block for child specific css -->
- {% block extar_css %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/startPage.css') }}">
- {% endblock %}
+<!-- Block for child-specific CSS -->
+{% block extar_css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/startPage.css') }}">
+{% endblock %}
 
- {% block extra_js %}
+{% block extra_js %}
     <script src="{{ url_for('static', filename='js/startPage.js') }}" defer></script>
 {% endblock %}
 
 {% block main %}
-    
-     <section id="hero-section">
-        <div id="intro-content">
-            <div id="intro-text">
-                <h1>EXPLORE</h1>
-                <p>Hidden message are everyone, with the eye of curious and excitement, may only find the meaning of it.</p>
-                <p>This project is intend to explore various pencil-paper-cphier with various methods and learning, via someuseful tools
-                </p>
+    <!-- Hero Section -->
+    <section id="hero-section">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Unlock the Secrets of Cryptography</h1>
+                <p>Dive into the world of ciphers, codes, and hidden messages. Explore ancient and modern cryptographic techniques with Cryptonite.</p>
+                <a href="/join" class="cta-button">Start Exploring</a>
             </div>
-            <div id="hero-img"></div>
-        </div>
-    </section>
-    <main>
-        <div class="title-div">
-            <h2 id="main-section-title">SOME OF chiphers</h2>
-        </div>
-        <div class="exoplanets">
-            <div class="exoplanet">
-                <img src="../static/images/cryptography.png" alt="image of kepler-36-b">
-                <p>Kepler-36 b</p>
-                <p>[Super Earth]</p>
-            </div>
-            <div class="exoplanet">
-                <img src="../static/images/quantum.png" alt="image of kepler-22-b">
-                <p>Kepler-22 b</p>
-                <p>[Super Earth]</p>
-            </div>
-            <div class="exoplanet">
-                <img src="../static/images/blockchain.png" alt="image of GJ-504-b">
-                <p>GJ-504-b</p>
-                <p>[Gas Giant]</p>
-            </div>
-            <div class="exoplanet">
-                <img src="../static/images/cryptography.png" alt="image of 55-cancri-e">
-                <p>55 Cancri e</p>
-                <p>[Super Earth]</p>
-            </div>
-        </div>
-    </main>
-    <section>
-        <div id="explore-section">
-            <div class="card">
-                <div class="card-text">
-                    <h3>Just names aren't enough right?...Wanna explore more exoplanets?</h3>
-                    <p>Click EXLORE to check out NASA's amazing site</p>
-                </div>
-                <button class="btn" type="submit"><a href="https://exoplanets.nasa.gov/eyes-on-exoplanets/#/"
-                        target="_blank">EXPLORE</a></button>
+            <div class="hero-image">
+                <img src="../static/images/compass.png" alt="Cryptography Illustration">
             </div>
         </div>
     </section>
+
+    <!-- Ciphers Section -->
+    <section id="ciphers-section">
+        <h2>Explore Popular Ciphers</h2>
+        <div class="cipher-grid">
+            <div class="cipher-card">
+                <img src="../static/images/ai-generated-9115792_1920.png" alt="Caesar Cipher">
+                <h3>Caesar Cipher</h3>
+                <p>Shift letters to encode messages. A classic technique used by Julius Caesar.</p>
+            </div>
+            <div class="cipher-card">
+                <img src="../static/images/cryptography.png" alt="Vigenère Cipher">
+                <h3>Vigenère Cipher</h3>
+                <p>A more complex cipher using a keyword for encryption.</p>
+            </div>
+            <div class="cipher-card">
+                <img src="../static/images/quantum.png" alt="RSA Encryption">
+                <h3>RSA Encryption</h3>
+                <p>Modern asymmetric encryption used in secure communications.</p>
+            </div>
+            <div class="cipher-card">
+                <img src="../static/images/blockchain.png" alt="Quantum Cryptography">
+                <h3>Quantum Cryptography</h3>
+                <p>The future of secure communication using quantum mechanics.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta-section">
+        <div class="cta-content">
+            <h2>Ready to Decode the Mysteries?</h2>
+            <p>Join Cryptonite and start your journey into the fascinating world of cryptography.</p>
+            <a href="/join" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>Cryptonite</p>
+        <p>Cryptonite &copy; 2023</p>
         <p>
-            <a href="https://www.flaticon.com/free-icons/planet" title="planet icons" target="_blank">Planet
-                icons created by Freepik - Flaticon</a>
-            &
-            <a href="https://unsplash.com/@simonppt?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-                target="_blank">Blue planet photo by Simon Lee on</a>
-            <a href="https://unsplash.com/s/photos/planets?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-                target="_blank">Unsplash</a>
+            <a href="https://www.flaticon.com/free-icons/cryptography" target="_blank">Cryptography icons by Freepik</a> |
+            <a href="https://unsplash.com/" target="_blank">Images from Unsplash</a>
         </p>
     </footer>
 {% endblock %}
